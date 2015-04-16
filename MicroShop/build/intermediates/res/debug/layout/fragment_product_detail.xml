@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/product_detail_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/product_detail_fragment_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/product_img_one"
+                android:textColor="#A1A1A1"
+                android:textSize="@dimen/front_14" />
+
+            <TextView
+                android:id="@+id/product_detail_fragment_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/product_img_two"
+                android:textColor="#A1A1A1"
+                android:textSize="@dimen/front_14" />
+
+            <TextView
+                android:id="@+id/product_detail_fragment_texture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/product_img_three"
+                android:textColor="#A1A1A1"
+                android:textSize="@dimen/front_14" />
+
+            <TextView
+                android:id="@+id/product_detail_fragment_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/product_img_four"
+                android:textColor="#A1A1A1"
+                android:textSize="@dimen/front_14" />
+
+            <ImageView
+                android:id="@+id/product_detail_fragment_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@drawable/product_img"
+                android:contentDescription="@null"
+                android:scaleType="centerInside" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/product_detail_scroll_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        android:scaleType="centerInside"
+        android:src="@drawable/scroll_to_top" />
+
+</RelativeLayout><!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/fragment_product_detail.xml -->

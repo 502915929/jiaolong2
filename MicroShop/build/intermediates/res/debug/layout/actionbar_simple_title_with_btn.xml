@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/actionbar_strb_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/apptheme" >
+
+        <RelativeLayout
+            android:id="@+id/action_head_back"
+            android:layout_width="80dp"
+            android:layout_height="45dp"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/action_head_back_image"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/back"
+                android:contentDescription="@null"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/action_head_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/front_18"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/action_head_home"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/action_head_home_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:adjustViewBounds="false"
+                android:background="@null"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/actionbar_simple_title_with_btn.xml -->

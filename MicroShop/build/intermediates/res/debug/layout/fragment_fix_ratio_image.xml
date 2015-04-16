@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/fragment_billboard_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerInside" />
+
+    <ImageView
+        android:id="@+id/fragment_billboard_iv_loading_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerInside" />
+
+</RelativeLayout><!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/fragment_fix_ratio_image.xml -->

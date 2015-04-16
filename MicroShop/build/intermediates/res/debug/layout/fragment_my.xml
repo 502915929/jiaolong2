@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+</LinearLayout><!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/fragment_my.xml -->

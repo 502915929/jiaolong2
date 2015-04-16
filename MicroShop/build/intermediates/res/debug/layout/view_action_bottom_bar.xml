@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#a1a1a1" >
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/actionBarTabOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/actionBarTabIconOne"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/tab_dynamic"
+                android:contentDescription="@null"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/actionBarTabOneTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/tab_one"
+                android:textColor="#828282"
+                android:textSize="@dimen/front_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actionBarTabTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/actionBarTabIconTwo"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/tab_local"
+                android:contentDescription="@null"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/actionBarTabTwoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/tab_two"
+                android:textColor="#828282"
+                android:textSize="@dimen/front_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actionBarTabThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/actionBarTabIconThree"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/tab_search"
+                android:contentDescription="@null"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/actionBarTabThreeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/tab_three"
+                android:textColor="#828282"
+                android:textSize="@dimen/front_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actionBarTabFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/actionBarTabIconFour"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/tab_my"
+                android:contentDescription="@null"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/actionBarTabFourTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/tab_four"
+                android:textColor="#828282"
+                android:textSize="@dimen/front_16" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/view_action_bottom_bar.xml -->

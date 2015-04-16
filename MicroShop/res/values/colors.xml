@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="apptheme">#D0393B</color>
+
+    <drawable name="myitemline">#D6D6D6</drawable>
+
+    <color name="color_hex_333333">#333333</color>
+    <color name="color_hex_DCD9CF">#DCD9CF</color>
+    <color name="color_hex_221815">#221815</color>
+    <color name="color_hex_808285">#808285</color>
+    <color name="color_hex_a7a9ac">#A7A9AC</color>
+    <color name="color_hex_b7201d">#B7201D</color>
+    <color name="color_hex_bcbec0">#BCBEC0</color>
+    <color name="color_hex_d4d6d7">#D4D6D7</color>
+    <color name="color_hex_dcdcdc">#DCDCDC</color>
+    <color name="color_hex_f1f2f2">#F1F2F2</color>
+    <color name="color_hex_f5f5f5">#F5F5F5</color>
+
+</resources>

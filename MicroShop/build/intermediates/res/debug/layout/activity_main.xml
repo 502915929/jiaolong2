@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <com.micro.shop.view.ActionBottomBar
+        android:id="@+id/mainActionBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <RelativeLayout
+        android:id="@+id/mainActionContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/mainActionBottomBar" >
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/activity_main.xml -->

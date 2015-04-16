@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.micro.shop.view.AutoHeightViewPager
+        android:id="@+id/layout_adv_style_pointer_vp_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true" >
+
+        <RelativeLayout
+            android:id="@+id/layout_adv_style_pointer_rl_vpi_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" >
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/layout_adv_style_pointer_indicator.xml -->

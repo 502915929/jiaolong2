@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <RelativeLayout
+        android:id="@+id/fragment_simple_list_head"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/apptheme" >
+
+        <TextView
+            android:id="@+id/fragment_simple_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/front_18" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/fragment_simple_list_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fragment_simple_list_head"
+        android:scrollingCache="false" />
+
+    <ProgressBar
+        android:id="@+id/fragment_simple_list_pb_loadingbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

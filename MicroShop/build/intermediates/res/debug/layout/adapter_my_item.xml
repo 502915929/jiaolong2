@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/adapter_my_item_image"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        android:scaleType="centerInside" />
+
+    <TextView
+        android:id="@+id/adapter_my_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/adapter_my_item_image"
+        android:textColor="#5c5c5c"
+        android:textSize="@dimen/front_20" />
+
+    <ImageView
+        android:id="@+id/adapter_my_item_icon"
+        android:layout_width="13dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/my_icon"
+        android:contentDescription="@null"
+        android:scaleType="centerInside" />
+
+</RelativeLayout><!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/adapter_my_item.xml -->
