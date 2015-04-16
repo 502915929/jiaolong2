@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +33,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.micro.shop.R;
 import com.micro.shop.activity.ProductDetailActivity;
 import com.micro.shop.activity.ShopMainActivity;
+import com.micro.shop.adapter.DynamicAdapter;
+import com.micro.shop.entity.Dynamic;
 import com.micro.shop.entity.DynamicEntity;
 
 /**
@@ -52,6 +55,8 @@ public class DynamicFragment extends Fragment {
 	private PullToRefreshListView mPlvList;
 	private DynamicAdapter adapter = null;
 	private int page = 1;
+
+
 	private Handler handler = new Handler(new Callback() {
 
 		@Override
@@ -60,7 +65,7 @@ public class DynamicFragment extends Fragment {
 				onRefreshComplete();
 				setProgressBarVisible(false);
 				@SuppressWarnings("unchecked")
-				List<DynamicEntity> list = (List<DynamicEntity>) msg.obj;
+				List<Dynamic> list = (List<Dynamic>) msg.obj;
 				if (adapter == null) {
 					adapter = new DynamicAdapter(getActivity(), list);
 					setAdapter(adapter);
@@ -238,118 +243,5 @@ public class DynamicFragment extends Fragment {
 		}
 	}
 
-	public class DynamicAdapter extends BaseAdapter {
-		private Context context;
-		private List<DynamicEntity> list;
-		private LayoutInflater inflater;
 
-		public DynamicAdapter(Context context, List<DynamicEntity> list) {
-			super();
-			this.list = list;
-			this.context = context;
-			this.inflater = LayoutInflater.from(this.context);
-		}
-
-		public void update(List<DynamicEntity> list) {
-			this.list.clear();
-			add(list);
-		}
-
-		public void add(List<DynamicEntity> list) {
-			this.list.addAll(list);
-			notifyDataSetChanged();
-		}
-
-		@Override
-		public int getCount() {
-			return list.size();
-		}
-
-		@Override
-		public Object getItem(int arg0) {
-			return list.get(arg0);
-		}
-
-		@Override
-		public long getItemId(int arg0) {
-			return arg0;
-		}
-
-		@Override
-		public View getView(int position, View view, ViewGroup parent) {
-			if (view == null)
-				view = inflater.inflate(R.layout.adapter_dynamic_item, parent,
-						false);
-			LinearLayout head = (LinearLayout) view
-					.findViewById(R.id.dynamic_item_one);
-			LinearLayout xin = (LinearLayout) view
-					.findViewById(R.id.dynamic_item_collect);
-			LinearLayout share = (LinearLayout) view
-					.findViewById(R.id.dynamic_item_share);
-			LinearLayout address = (LinearLayout) view
-					.findViewById(R.id.dynamic_item_address);
-			RelativeLayout intro = (RelativeLayout) view
-					.findViewById(R.id.dynamic_item_three);
-			TextView collecBtn = (TextView) view
-					.findViewById(R.id.dynamic_item_collect_btn);
-			TextView oldPrice = (TextView) view
-					.findViewById(R.id.dynamic_item_old_price);
-			final DynamicEntity entity = list.get(position);
-			ImageView image = (ImageView) view
-					.findViewById(R.id.dynamic_item_image);
-			if (entity.isOnlyImage()) {
-				image.setBackgroundResource(R.drawable.dyni_two);
-				head.setVisibility(View.GONE);
-				intro.setVisibility(View.GONE);
-			} else {
-				image.setBackgroundResource(R.drawable.dyni_one);
-				head.setVisibility(View.VISIBLE);
-				intro.setVisibility(View.VISIBLE);
-			}
-			oldPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-			view.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View arg0) {
-					// 列表点击跳转
-					if (entity.isOnlyImage())
-						startActivity(new Intent(context,
-								ProductDetailActivity.class));
-					else
-						startActivity(new Intent(context,
-								ShopMainActivity.class));
-				}
-			});
-			collecBtn.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View arg0) {
-					// 收藏按钮点击操作
-				}
-			});
-			xin.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View arg0) {
-					// 点赞按钮操作
-				}
-			});
-			share.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View arg0) {
-					// 分享按钮操作
-				}
-			});
-			address.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View arg0) {
-					// 地址按钮操作
-				}
-			});
-			return view;
-		}
-
-	}
 }

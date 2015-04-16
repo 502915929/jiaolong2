@@ -5,6 +5,7 @@
     android:background="@color/white" >
 
     <LinearLayout
+        android:id="@+id/dynaic_list_pro_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -88,7 +89,9 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:contentDescription="@null"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:src="@drawable/dyni_one"
+                />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -113,7 +116,7 @@
                         android:textSize="@dimen/front_18" />
 
                     <TextView
-                        android:id="@+id/dynamic_item_old_price"
+                        android:id="@+id/dynamic_item_old_price_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
@@ -234,7 +237,7 @@
                     android:src="@drawable/zan_selects" />
 
                 <TextView
-                    android:id="@+id/dynamic_item_collect_title"
+                    android:id="@+id/dynamic_item_good_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
