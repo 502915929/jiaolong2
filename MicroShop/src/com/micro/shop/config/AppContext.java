@@ -16,6 +16,7 @@ public class AppContext extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		SDKInitializer.initialize(getApplicationContext());
 		// ------------------- 初始化ImageLoader操作 ---------------------
 		// ImageLoader URI:
 		// String imageUri = "http://site.com/image.png"; // from Web
@@ -38,7 +39,6 @@ public class AppContext extends Application {
 				.defaultDisplayImageOptions(defaultOptions).build();
 		ImageLoader.getInstance().init(config);
 		// -------------------------------------------------------------
-		//SDKInitializer.initialize(getApplicationContext());
 	}
 
 }
