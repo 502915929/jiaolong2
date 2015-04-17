@@ -13,10 +13,12 @@
     <string name="dynamic_name">炫彩美妆馆</string>
     <string name="dynamic_address">重庆</string>
     <string name="dynamic_collect_btn">+  收藏</string>
+    <string name="dynamic_has_collect_btn">已收藏</string>
     <string name="dynamic_collect">56</string>
     <string name="dynamic_share">分享</string>
     <string name="dynamic_news_price">￥129.00</string>
     <string name="dynamic_old_price">￥420.00</string>
+    <string name="price">￥</string>
     <string name="dynamic_count">已售125</string>
     <string name="dynamic_intro">超in韩国雾面妆容，内含：唯美15ml*2+蜡笔唇膏+丝雾眼线笔+明丽纤长睫毛膏</string>
     <string name="logo_input_username">账号</string>

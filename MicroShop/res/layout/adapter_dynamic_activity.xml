@@ -21,7 +21,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@null"
             android:scaleType="fitXY"
-            android:src="@drawable/dyni_one"
+            android:src="@drawable/dyni_two"
             />
 
 

@@ -39,7 +39,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/dynamic_item_icon"
-                    android:text="@string/dynamic_name"
                     android:textColor="#000000"
                     android:textSize="@dimen/front_16" />
 
@@ -74,7 +73,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
-                android:text="@string/dynamic_intro"
                 android:textColor="#868686"
                 android:textSize="@dimen/front_14" />
         </LinearLayout>
@@ -111,7 +109,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/dynamic_news_price"
                         android:textColor="#FFFF00"
                         android:textSize="@dimen/front_18" />
 
@@ -121,7 +118,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/dynamic_old_price"
                         android:textColor="#FFFF00"
                         android:textSize="@dimen/front_14" />
                 </LinearLayout>
@@ -133,7 +129,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="10dp"
-                    android:text="@string/dynamic_count"
+
                     android:textColor="#FFFFFF"
                     android:textSize="@dimen/front_14" />
             </RelativeLayout>

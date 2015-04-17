@@ -38,4 +38,16 @@ public class NumberFormatUtil {
         f=Double.parseDouble(nf.format(f));
         return f;
     }
+
+
+    public static String conventToString(double f) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        return df.format(f);
+    }
+
+    public static String conventToString1(double f) {
+        NumberFormat nf = NumberFormat.getNumberInstance();
+        nf.setMaximumFractionDigits(2);
+        return nf.format(f);
+    }
 }

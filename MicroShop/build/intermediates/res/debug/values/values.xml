@@ -277,6 +277,7 @@
     <string name="dynamic_collect">56</string>
     <string name="dynamic_collect_btn">+  收藏</string>
     <string name="dynamic_count">已售125</string>
+    <string name="dynamic_has_collect_btn">已收藏</string>
     <string name="dynamic_intro">超in韩国雾面妆容，内含：唯美15ml*2+蜡笔唇膏+丝雾眼线笔+明丽纤长睫毛膏</string>
     <string name="dynamic_name">炫彩美妆馆</string>
     <string name="dynamic_news_price">￥129.00</string>
@@ -297,6 +298,7 @@
     <string name="logo_reg_line">|</string>
     <string name="pop_shop_main_phone">电话：023-40360265</string>
     <string name="pop_shop_main_weixin">微信：568952362</string>
+    <string name="price">￥</string>
     <string name="product_btn_dian">进入店铺</string>
     <string name="product_btn_more">查看更多分类</string>
     <string name="product_collect">收藏</string>

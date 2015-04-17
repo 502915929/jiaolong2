@@ -23,6 +23,7 @@ import com.micro.shop.activity.ShopMainActivity;
 import com.micro.shop.constant.ConstantJiao;
 import com.micro.shop.entity.Dynamic;
 import com.micro.shop.net.HttpUtil;
+import com.micro.shop.util.NumberFormatUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -37,12 +38,20 @@ import java.util.List;
 public class DynamicAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Dynamic> dynamicList;
+    public static List<Dynamic> dynamicList;
     private LayoutInflater inflater;
 
-    //Í¼Æ¬¿Ø¼ş
+    //å›¾ç‰‡æ§ä»¶
     DisplayImageOptions options;
     ImageLoader imageLoader;
+    String priceEm;
+
+    public DynamicAdapter(Context context){
+        inflater=LayoutInflater.from(context);
+        this.context=context;
+        imageLoader= ImageLoader.getInstance();
+        /*ShareSDK.initSDK(context);*/
+    }
 
     public DynamicAdapter(Context context, List<Dynamic> list) {
         super();
@@ -63,24 +72,23 @@ public class DynamicAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return dynamicList.size();
+        return dynamicList==null?0:dynamicList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return dynamicList.get(position);
+        return dynamicList==null?null:dynamicList.get(position);
     }
 
     @Override
-    public long getItemId(int arg0) {
-        return arg0;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        Log.e("**********************", "---" + position);
         Dynamic dy=dynamicList.get(position);
-        if(dy.getType()==1){//ÉÌÆ·
+        if(dy.getType()==1){//å•†å“
             view=inflater.inflate(R.layout.adapter_dynamic_item,parent,false);
             initA(view, dy, position);
         }else if(dy.getType()==2){
@@ -89,131 +97,79 @@ public class DynamicAdapter extends BaseAdapter {
         }
         return view;
 
-
-        /*if (view == null)
-            view = inflater.inflate(R.layout.adapter_dynamic_item, parent,
-                    false);
-        LinearLayout head = (LinearLayout) view
-                .findViewById(R.id.dynamic_item_one);
-        LinearLayout xin = (LinearLayout) view
-                .findViewById(R.id.dynamic_item_collect);
-        LinearLayout share = (LinearLayout) view
-                .findViewById(R.id.dynamic_item_share);
-        LinearLayout address = (LinearLayout) view
-                .findViewById(R.id.dynamic_item_address);
-        RelativeLayout intro = (RelativeLayout) view
-                .findViewById(R.id.dynamic_item_three);
-        TextView collecBtn = (TextView) view
-                .findViewById(R.id.dynamic_item_collect_btn);
-        TextView oldPrice = (TextView) view
-                .findViewById(R.id.dynamic_item_old_price);
-
-        ImageView image = (ImageView) view
-                .findViewById(R.id.dynamic_item_image);
-        *//*if (entity.isOnlyImage()) {
-            image.setBackgroundResource(R.drawable.dyni_two);
-            head.setVisibility(View.GONE);
-            intro.setVisibility(View.GONE);
-        } else {
-            image.setBackgroundResource(R.drawable.dyni_one);
-            head.setVisibility(View.VISIBLE);
-            intro.setVisibility(View.VISIBLE);
-        }*//*
-        oldPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-
-        collecBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                // ÊÕ²Ø°´Å¥µã»÷²Ù×÷
-            }
-        });
-        xin.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                // µãÔŞ°´Å¥²Ù×÷
-            }
-        });
-        share.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                // ·ÖÏí°´Å¥²Ù×÷
-            }
-        });
-        address.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                // µØÖ·°´Å¥²Ù×÷
-            }
-        });
-        return view;*/
     }
 
 
 
     /**
-     * ³õÊ¼»¯¿Ø¼şA
+     * åˆå§‹åŒ–æ§ä»¶A
      */
     private void initA(View view, final Dynamic dy, final int position){
-        //µêÆÌlogo
+        //åº—é“ºlogo
         ImageView dy_shop_logo;
-        //µêÆÌÃû³Æ
+        //åº—é“ºåç§°
         TextView dy_shop_name;
-        //ÉÌÆ·Ãû³Æ
+        //å•†å“åç§°
         TextView dy_pro_name;
-        //ÉÌÆ·Í¼Æ¬
+        //å•†å“å›¾ç‰‡
         ImageView dy_pro_image;
-        //ÉÌÆ·Ô­¼Û
+        //å•†å“åŸä»·
         TextView dy_pro_order_price;
-        //ÉÌÆ·»î¶¯¼Û¸ñ
+        //å•†å“æ´»åŠ¨ä»·æ ¼
         TextView dy_pro_sale_price;
-        //µêÆÌËùÔÚ³ÇÊĞ
+        //åº—é“ºæ‰€åœ¨åŸå¸‚
         TextView dy_city_name;
-        //ÉÌÆ·µãÔŞÊı
+        //å•†å“ç‚¹èµæ•°
         TextView dy_total_good_num;
         final TextView dy_coll_pro;
         dy_shop_name=(TextView)view.findViewById(R.id.dynamic_item_icon_title);
 
-
-
-        //×ÜÔŞÊı
-        dy_total_good_num =(TextView)view.findViewById(R.id.dynamic_item_good_title);
-        //·ÖÏí
+        //åˆ†äº«
         LinearLayout fenxiang =(LinearLayout)view.findViewById(R.id.dynamic_item_share);
+
+        priceEm=context.getResources().getText(R.string.price).toString();
+
         if(dy.getShopName()!=null){
             dy_shop_name.setText(dy.getShopName());
+        }else{
+            dy_shop_name.setText("è„æ•°æ®ï¼Œæœªå¡«å†™");
         }
         dy_shop_logo=(ImageView)view.findViewById(R.id.dynamic_item_icon);
         if(dy.getShopLogo()!=null&&!"".equals(dy.getShopLogo())){
-            imageLoader.displayImage(ConstantJiao.aliUrl + dy.getProductImage(), dy_shop_logo, options);
+            imageLoader.displayImage(ConstantJiao.aliUrl + dy.getShopLogo() + "@61h_61w_0e", dy_shop_logo, options);
         }
         dy_coll_pro=(TextView) view.findViewById(R.id.dynamic_item_collect_btn);
         boolean isCollect =dy.isHasCollect();
         if(isCollect){
-            dy_coll_pro.setText("ÒÑ¹Ø×¢");
+            dy_coll_pro.setText(R.string.dynamic_has_collect_btn);
         }else{
-            dy_coll_pro.setText("¹Ø×¢");
+            dy_coll_pro.setText(R.string.dynamic_collect_btn);
         }
         dy_pro_name=(TextView)view.findViewById(R.id.dynamic_item_intro_title);
         if(dy.getProductName()!=null){
             dy_pro_name.setText(dy.getProductName());
+        }else{
+            dy_pro_name.setText("è„æ•°æ®ï¼Œæœªå¡«å†™");
         }
         dy_pro_image=(ImageView)view.findViewById(R.id.dynamic_item_image);
         if(dy.getProductImage()!=null&&!"".equals(dy.getProductImage())){
-            //dy_shop_logo.setImageResource(imageLoader.);
-            imageLoader.displayImage(ConstantJiao.aliUrl + dy.getProductImage(), dy_pro_image, options);
+            imageLoader.displayImage(ConstantJiao.aliUrl + dy.getProductImage() + "@!mobile-dynamic-bg", dy_pro_image, options);
         }
-        dy_pro_order_price=(TextView)view.findViewById(R.id.dynamic_item_news_price);
-        if(dy.getOldPrice()!=null){
-            dy_pro_order_price.setText("£¤" + dy.getOldPrice());
+        dy_pro_order_price=(TextView)view.findViewById(R.id.dynamic_item_old_price_price);
+        dy_pro_sale_price=(TextView)view.findViewById(R.id.dynamic_item_news_price);
+        String orderPrice=NumberFormatUtil.conventToString1(dy.getOldPrice());
+        if(dy.getOldPrice()!=0){
+            dy_pro_order_price.setText(priceEm + orderPrice);
+        }else{
+            dy_pro_sale_price.setText(priceEm + orderPrice);
+            dy_pro_order_price.setVisibility(View.GONE);
         }
-        dy_pro_sale_price=(TextView)view.findViewById(R.id.dynamic_item_old_price_price);
-        if(dy.getSalePrice()!=null){
-            dy_pro_sale_price.setText("£¤"+dy.getSalePrice());
+        if(dy.getSalePrice()!=null&&dy.getSalePrice()!=0){
+            String newPrice = NumberFormatUtil.conventToString1(dy.getSalePrice());
+            dy_pro_order_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            dy_pro_sale_price.setText(priceEm + newPrice);
         }
+
         dy_city_name=(TextView)view.findViewById(R.id.dynamic_item_address_title);
         if(dy.getCityName()!=null&&!"".equals(dy.getCityName())){
             dy_city_name.setText(dy.getCityName());
@@ -221,30 +177,31 @@ public class DynamicAdapter extends BaseAdapter {
         dy_total_good_num=(TextView)view.findViewById(R.id.dynamic_item_good_title);
         if(dy.getTotalGoodNum()!=null){
             dy_total_good_num.setText(dy.getTotalGoodNum());
+        }else {
+            dy_total_good_num.setText("0");
         }
 
-        //¹Ø×¢°´¼üclickÊÂ¼ş
+        //å…³æ³¨æŒ‰é”®clickäº‹ä»¶
         dy_coll_pro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("=============>","+++++++++++>"+position);
                 Dynamic dy= dynamicList.get(position);
-                if(dy.isHasCollect()){//ÒÑ¹Ø×¢
+                if(dy.isHasCollect()){//å·²å…³æ³¨
                     dy.setHasCollect(false);
-                    dy_coll_pro.setText("¹Ø×¢");
-                    Toast.makeText(context, "È¡Ïû¹Ø×¢ÉÌÆ·³É¹¦", Toast.LENGTH_SHORT);
+                    dy_coll_pro.setText(R.string.dynamic_has_collect_btn);
+                    Toast.makeText(context, "å–æ¶ˆå…³æ³¨å•†å“æˆåŠŸ", Toast.LENGTH_SHORT);
                     changeCollProStatus(1,dy);
-                }else{//Î´¹Ø×¢
+                }else{//æœªå…³æ³¨
                     dy.setHasCollect(true);
-                    dy_coll_pro.setText("ÒÑ¹Ø×¢");
-                    Toast.makeText(context, "¹Ø×¢ÉÌÆ·³É¹¦", Toast.LENGTH_SHORT);
+                    dy_coll_pro.setText(R.string.dynamic_collect_btn);
+                    Toast.makeText(context, "å…³æ³¨å•†å“æˆåŠŸ", Toast.LENGTH_SHORT);
                     changeCollProStatus(0, dy);
                 }
                 dynamicList.set(position,dy);
             }
         });
 
-        //µêÆÌlogoµã»÷½øÈëµêÆÌÊ×Ò³
+        //åº—é“ºlogoç‚¹å‡»è¿›å…¥åº—é“ºé¦–é¡µ
         dy_shop_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -256,7 +213,7 @@ public class DynamicAdapter extends BaseAdapter {
             }
         });
 
-        //µêÆÌÃûµã»÷½øÈëµêÆÌÊ×Ò³
+        //åº—é“ºåç‚¹å‡»è¿›å…¥åº—é“ºé¦–é¡µ
         dy_shop_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -268,11 +225,11 @@ public class DynamicAdapter extends BaseAdapter {
             }
         });
 
-        //ÉÌÆ·Ãû½øÈëÉÌÆ·ÏêÇéÒ³
+        //å•†å“åè¿›å…¥å•†å“è¯¦æƒ…é¡µ
         dy_pro_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Log.e("---->", "sÉÌÆ·ÏêÇé" + position);
+                /*Log.e("---->", "så•†å“è¯¦æƒ…" + position);
                 Dynamic dy = dynamicList.get(position);
                 Intent intent = new Intent(context, ProductMsgActivity.class);
                 intent.putExtra("productCode", dy.getProductCode());
@@ -280,11 +237,11 @@ public class DynamicAdapter extends BaseAdapter {
             }
         });
 
-        //ÉÌÆ·Ãû½øÈëÉÌÆ·ÏêÇéÒ³
+        //å•†å“åè¿›å…¥å•†å“è¯¦æƒ…é¡µ
         dy_pro_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Log.e("---->", "sÉÌÆ·ÏêÇé" + position);
+                /*Log.e("---->", "så•†å“è¯¦æƒ…" + position);
                 Dynamic dy = dynamicList.get(position);
                 Intent intent = new Intent(context, ProductMsgActivity.class);
                 intent.putExtra("productCode", dy.getProductCode());
@@ -292,11 +249,11 @@ public class DynamicAdapter extends BaseAdapter {
             }
         });
 
-        //µã»÷µãÔŞÊı½øÈëÉÌÆ·ÏêÇé
+        //ç‚¹å‡»ç‚¹èµæ•°è¿›å…¥å•†å“è¯¦æƒ…
         /*good_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("---->", "sÉÌÆ·ÏêÇé" + position);
+                Log.e("---->", "så•†å“è¯¦æƒ…" + position);
                 Dynamic dy = dynamicList.get(position);
                 Intent intent = new Intent(context, ProductMsgActivity.class);
                 intent.putExtra("productCode", dy.getProductCode());
@@ -304,32 +261,32 @@ public class DynamicAdapter extends BaseAdapter {
             }
         });*/
 
-        //µã»÷×ø±êÌø×ªµ½µêÆÌµØÍ¼¼°ÖÜ±ßÏêÇé
+        //ç‚¹å‡»åæ ‡è·³è½¬åˆ°åº—é“ºåœ°å›¾åŠå‘¨è¾¹è¯¦æƒ…
         /*dy_city_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("---->", "µêÆÌµØÖ·µØÍ¼Õ¹Ê¾" + position);
+                Log.e("---->", "åº—é“ºåœ°å€åœ°å›¾å±•ç¤º" + position);
                 Dynamic dy = dynamicList.get(position);
                 MyApplication.mobileDao.findShopMapAdress(dy,context);
                 Log.e("go shopMap","the success *******");
             }
         });*/
 
-        //µã»÷·ÖÏíµ÷ÓÃ·ÖÏí
+        //ç‚¹å‡»åˆ†äº«è°ƒç”¨åˆ†äº«
         /*fenxiang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("---->", "µêÆÌ·ÖÏístart" + position);
+                Log.e("---->", "åº—é“ºåˆ†äº«start" + position);
                 Dynamic dynamic=dynamicList.get(position);
                 OnekeyShare share = new OnekeyShare();
-                share.setTitle("ÓÅÉÌÈ¦--ÄãÉí±ßµÄÆ½Ì¨");
-                share.setText("»¹ÔÚ¿à¿àµÄÅóÓÑÈ¦·¢¹ã¸æ£¿»¹ÔÚ¿àÄÕÄúµÄµêÆÌÉÌÆ·Ã»ÓĞÈËÖªµÀ£¿¿ìÀ´¼ÓÈëÃâ·ÑÆ½Ì¨http://192.168.1.169:8080/qqt_up/detailPage/selectDetailProduct.htm?code=402881294c8ecc05014c8ed04e890000&shopCode=402881294c8e30b3014c8e374ea60000");
+                share.setTitle("ä¼˜å•†åœˆ--ä½ èº«è¾¹çš„å¹³å°");
+                share.setText("è¿˜åœ¨è‹¦è‹¦çš„æœ‹å‹åœˆå‘å¹¿å‘Šï¼Ÿè¿˜åœ¨è‹¦æ¼æ‚¨çš„åº—é“ºå•†å“æ²¡æœ‰äººçŸ¥é“ï¼Ÿå¿«æ¥åŠ å…¥å…è´¹å¹³å°http://192.168.1.169:8080/qqt_up/detailPage/selectDetailProduct.htm?code=402881294c8ecc05014c8ed04e890000&shopCode=402881294c8e30b3014c8e374ea60000");
                 share.setTitleUrl("http://192.168.1.169:8080/qqt_up/detailPage/selectDetailProduct.htm?code=402881294c8ecc05014c8ed04e890000&shopCode=402881294c8e30b3014c8e374ea60000");
                 share.setImageUrl("http://125.oss-cn-beijing.aliyuncs.com/c5ae76c9d20c4459a1024242d4191e10.jpg");
 
-                //ÉèÖÃ¾«¶È
+                //è®¾ç½®ç²¾åº¦
                 share.setLongitude(113.372338f);*//*
-                //ÉèÖÃÊÇ·ñÊÇÖ±½Ó·ÖÏí
+                //è®¾ç½®æ˜¯å¦æ˜¯ç›´æ¥åˆ†äº«
                 share.setSilent(false);
                 share.show(context);
             }
@@ -339,39 +296,39 @@ public class DynamicAdapter extends BaseAdapter {
     }
 
     /**
-     * ³õÊ¼»¯¿Ø¼şb
+     * åˆå§‹åŒ–æ§ä»¶b
      * @param view
      * @param dy
      * @param position
      */
     private void initB(View view,Dynamic dy,int position){
         ImageView activity_img=(ImageView)view.findViewById(R.id.dynamic_activity_image);
-        imageLoader.displayImage(ConstantJiao.aliUrl+dy.getActivityImg(),activity_img,options);
+        imageLoader.displayImage(ConstantJiao.aliUrl+dy.getActivityImg()+"@303h_623w_2e",activity_img,options);
     }
 
 
     /**
-     * ¸Ä±äÉÌÆ·µÄÊÕ²Ø×´Ì¬
+     * æ”¹å˜å•†å“çš„æ”¶è—çŠ¶æ€
      */
     public void changeCollProStatus(int status,Dynamic dy){
         String productCode = dy.getProductCode();
 
-        //»ñÈ¡±¾µØµÄbaseId--ÕâÓ¦¸ÃÊÇÎ¨Ò»µÄ£¬¶ÔÓÚÃ¿Ì¨ÖÇÄÜÉè±¸À´Ëµ
+        //è·å–æœ¬åœ°çš„baseId--è¿™åº”è¯¥æ˜¯å”¯ä¸€çš„ï¼Œå¯¹äºæ¯å°æ™ºèƒ½è®¾å¤‡æ¥è¯´
 
-        //¸ù¾İbaseId»ñµÃ°ó¶¨µÄÕËºÅ
+        //æ ¹æ®baseIdè·å¾—ç»‘å®šçš„è´¦å·
         RequestParams params = new RequestParams();
         //params.put("userCode",userCode);
         params.put("productCode",productCode);
         params.put("status",status);
         HttpUtil.post(ConstantJiao.userCollProUrl, params, new JsonHttpResponseHandler() {
-            //³É¹¦µ÷ÓÃ
+            //æˆåŠŸè°ƒç”¨
             public void onSuccess(int statusCode, Header[] headers, JSONArray array) {
 
             }
 
-            //Ê§°Üµ÷ÓÃ
+            //å¤±è´¥è°ƒç”¨
             public void onFailure(int statusCode, Header[] headers, String responseBody, Throwable throwable) {
-                Toast.makeText(context, "ÍøÂçÒì³££¬ÇëÉÔºóÖØÊÔ", Toast.LENGTH_SHORT);
+                Toast.makeText(context, "ç½‘ç»œå¼‚å¸¸ï¼Œè¯·ç¨åé‡è¯•", Toast.LENGTH_SHORT);
             }
         });
     }
