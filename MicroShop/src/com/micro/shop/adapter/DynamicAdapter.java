@@ -44,7 +44,7 @@ public class DynamicAdapter extends BaseAdapter {
     //图片控件
     DisplayImageOptions options;
     ImageLoader imageLoader;
-    String priceEm;
+
 
     public DynamicAdapter(Context context){
         inflater=LayoutInflater.from(context);
@@ -85,15 +85,52 @@ public class DynamicAdapter extends BaseAdapter {
         return position;
     }
 
+    /**
+     * 后续研究是否可以优化
+     * @param position
+     * @param view
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View view, ViewGroup parent) {
+        ViewHolder holder;
+        ViewHolder holderActivity;
         Dynamic dy=dynamicList.get(position);
         if(dy.getType()==1){//商品
+            holder = new ViewHolder();
             view=inflater.inflate(R.layout.adapter_dynamic_item,parent,false);
-            initA(view, dy, position);
-        }else if(dy.getType()==2){
+            //店铺名称
+            holder.dy_shop_name=(TextView)view.findViewById(R.id.dynamic_item_icon_title);
+            //分享
+            holder.fenxiang =(LinearLayout)view.findViewById(R.id.dynamic_item_share);
+            //收藏
+            holder.dy_coll_pro=(TextView) view.findViewById(R.id.dynamic_item_collect_btn);
+            //店铺logo
+            holder.dy_shop_logo=(ImageView)view.findViewById(R.id.dynamic_item_icon);
+            //商品名称
+            holder.dy_pro_name=(TextView)view.findViewById(R.id.dynamic_item_intro_title);
+            //商品图片
+            holder.dy_pro_image=(ImageView)view.findViewById(R.id.dynamic_item_image);
+            //商品原价
+            holder.dy_pro_order_price=(TextView)view.findViewById(R.id.dynamic_item_old_price_price);
+            //商品折扣价
+            holder.dy_pro_sale_price=(TextView)view.findViewById(R.id.dynamic_item_news_price);
+            //店铺所在城市
+            holder.dy_city_name=(TextView)view.findViewById(R.id.dynamic_item_address_title);
+            //商品点赞数
+            holder.dy_total_good_num=(TextView)view.findViewById(R.id.dynamic_item_good_title);
+            //分享按键
+            holder.fenxiang=(LinearLayout)view.findViewById(R.id.dynamic_item_share);
+            view.setTag(holder);
+            initA(holder, dy, position);
+        }else {
+            holderActivity=new ViewHolder();
             view =inflater.inflate(R.layout.adapter_dynamic_activity,parent,false);
-            initB(view,dy,position);
+            //活动图片
+            holderActivity.activity_img=(ImageView)view.findViewById(R.id.dynamic_activity_image);
+            view.setTag(holderActivity);
+            initB(holderActivity,dy,position);
         }
         return view;
 
@@ -104,97 +141,70 @@ public class DynamicAdapter extends BaseAdapter {
     /**
      * 初始化控件A
      */
-    private void initA(View view, final Dynamic dy, final int position){
-        //店铺logo
-        ImageView dy_shop_logo;
-        //店铺名称
-        TextView dy_shop_name;
-        //商品名称
-        TextView dy_pro_name;
-        //商品图片
-        ImageView dy_pro_image;
-        //商品原价
-        TextView dy_pro_order_price;
-        //商品活动价格
-        TextView dy_pro_sale_price;
-        //店铺所在城市
-        TextView dy_city_name;
-        //商品点赞数
-        TextView dy_total_good_num;
-        final TextView dy_coll_pro;
-        dy_shop_name=(TextView)view.findViewById(R.id.dynamic_item_icon_title);
+    private void initA(final ViewHolder holder, final Dynamic dy, final int position){
 
-        //分享
-        LinearLayout fenxiang =(LinearLayout)view.findViewById(R.id.dynamic_item_share);
-
-        priceEm=context.getResources().getText(R.string.price).toString();
+        //￥
+        String priceEm=context.getResources().getText(R.string.price).toString();
+        boolean isCollect =dy.isHasCollect();
+        String orderPrice=NumberFormatUtil.conventToString1(dy.getOldPrice());
 
         if(dy.getShopName()!=null){
-            dy_shop_name.setText(dy.getShopName());
+            holder.dy_shop_name.setText(dy.getShopName());
         }else{
-            dy_shop_name.setText("脏数据，未填写");
+            holder.dy_shop_name.setText("脏数据，未填写");
         }
-        dy_shop_logo=(ImageView)view.findViewById(R.id.dynamic_item_icon);
         if(dy.getShopLogo()!=null&&!"".equals(dy.getShopLogo())){
-            imageLoader.displayImage(ConstantJiao.aliUrl + dy.getShopLogo() + "@61h_61w_0e", dy_shop_logo, options);
+            imageLoader.displayImage(ConstantJiao.aliUrl + dy.getShopLogo() + "@61h_61w_0e", holder.dy_shop_logo, options);
         }
-        dy_coll_pro=(TextView) view.findViewById(R.id.dynamic_item_collect_btn);
-        boolean isCollect =dy.isHasCollect();
         if(isCollect){
-            dy_coll_pro.setText(R.string.dynamic_has_collect_btn);
+            holder.dy_coll_pro.setText(R.string.dynamic_has_collect_btn);
         }else{
-            dy_coll_pro.setText(R.string.dynamic_collect_btn);
+            holder.dy_coll_pro.setText(R.string.dynamic_collect_btn);
         }
-        dy_pro_name=(TextView)view.findViewById(R.id.dynamic_item_intro_title);
         if(dy.getProductName()!=null){
-            dy_pro_name.setText(dy.getProductName());
+            holder. dy_pro_name.setText(dy.getProductName());
         }else{
-            dy_pro_name.setText("脏数据，未填写");
+            holder.dy_pro_name.setText("脏数据，未填写");
         }
-        dy_pro_image=(ImageView)view.findViewById(R.id.dynamic_item_image);
         if(dy.getProductImage()!=null&&!"".equals(dy.getProductImage())){
-            imageLoader.displayImage(ConstantJiao.aliUrl + dy.getProductImage() + "@!mobile-dynamic-bg", dy_pro_image, options);
+            imageLoader.displayImage(ConstantJiao.aliUrl + dy.getProductImage() + "@!mobile-dynamic-bg", holder.dy_pro_image, options);
         }
-        dy_pro_order_price=(TextView)view.findViewById(R.id.dynamic_item_old_price_price);
-        dy_pro_sale_price=(TextView)view.findViewById(R.id.dynamic_item_news_price);
-        String orderPrice=NumberFormatUtil.conventToString1(dy.getOldPrice());
+
         if(dy.getOldPrice()!=0){
-            dy_pro_order_price.setText(priceEm + orderPrice);
+            holder.dy_pro_order_price.setText(priceEm +orderPrice);
         }else{
-            dy_pro_sale_price.setText(priceEm + orderPrice);
-            dy_pro_order_price.setVisibility(View.GONE);
+            holder.dy_pro_sale_price.setText(priceEm + orderPrice);
+            holder.dy_pro_order_price.setVisibility(View.GONE);
         }
         if(dy.getSalePrice()!=null&&dy.getSalePrice()!=0){
             String newPrice = NumberFormatUtil.conventToString1(dy.getSalePrice());
-            dy_pro_order_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-            dy_pro_sale_price.setText(priceEm + newPrice);
+            holder.dy_pro_order_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.dy_pro_sale_price.setText(priceEm + newPrice);
         }
 
-        dy_city_name=(TextView)view.findViewById(R.id.dynamic_item_address_title);
         if(dy.getCityName()!=null&&!"".equals(dy.getCityName())){
-            dy_city_name.setText(dy.getCityName());
+            holder.dy_city_name.setText(dy.getCityName());
         }
-        dy_total_good_num=(TextView)view.findViewById(R.id.dynamic_item_good_title);
         if(dy.getTotalGoodNum()!=null){
-            dy_total_good_num.setText(dy.getTotalGoodNum());
+            holder.dy_total_good_num.setText(dy.getTotalGoodNum());
         }else {
-            dy_total_good_num.setText("0");
+            holder.dy_total_good_num.setText("0");
         }
 
         //关注按键click事件
-        dy_coll_pro.setOnClickListener(new View.OnClickListener() {
+        holder.dy_coll_pro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dynamic dy= dynamicList.get(position);
-                if(dy.isHasCollect()){//已关注
+                if(dy.isHasCollect()){//已收藏
                     dy.setHasCollect(false);
-                    dy_coll_pro.setText(R.string.dynamic_has_collect_btn);
-                    Toast.makeText(context, "取消关注商品成功", Toast.LENGTH_SHORT);
+                    holder.dy_coll_pro.setText(R.string.dynamic_collect_btn);
+                    Toast.makeText(context, "取消收藏商品成功", Toast.LENGTH_SHORT);
                     changeCollProStatus(1,dy);
-                }else{//未关注
+                }else{//未收藏
                     dy.setHasCollect(true);
-                    dy_coll_pro.setText(R.string.dynamic_collect_btn);
-                    Toast.makeText(context, "关注商品成功", Toast.LENGTH_SHORT);
+                    holder.dy_coll_pro.setText(R.string.dynamic_has_collect_btn);
+                    Toast.makeText(context, "收藏商品成功", Toast.LENGTH_SHORT);
                     changeCollProStatus(0, dy);
                 }
                 dynamicList.set(position,dy);
@@ -202,7 +212,7 @@ public class DynamicAdapter extends BaseAdapter {
         });
 
         //店铺logo点击进入店铺首页
-        dy_shop_logo.setOnClickListener(new View.OnClickListener() {
+        holder.dy_shop_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                /* Log.e("logo","logo"+position);
@@ -214,7 +224,7 @@ public class DynamicAdapter extends BaseAdapter {
         });
 
         //店铺名点击进入店铺首页
-        dy_shop_name.setOnClickListener(new View.OnClickListener() {
+        holder.dy_shop_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                /* Log.e("logo", "logo" + position);
@@ -226,7 +236,7 @@ public class DynamicAdapter extends BaseAdapter {
         });
 
         //商品名进入商品详情页
-        dy_pro_name.setOnClickListener(new View.OnClickListener() {
+        holder.dy_pro_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*Log.e("---->", "s商品详情" + position);
@@ -238,7 +248,7 @@ public class DynamicAdapter extends BaseAdapter {
         });
 
         //商品名进入商品详情页
-        dy_pro_image.setOnClickListener(new View.OnClickListener() {
+        holder.dy_pro_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*Log.e("---->", "s商品详情" + position);
@@ -297,13 +307,12 @@ public class DynamicAdapter extends BaseAdapter {
 
     /**
      * 初始化控件b
-     * @param view
+     * @param holder
      * @param dy
      * @param position
      */
-    private void initB(View view,Dynamic dy,int position){
-        ImageView activity_img=(ImageView)view.findViewById(R.id.dynamic_activity_image);
-        imageLoader.displayImage(ConstantJiao.aliUrl+dy.getActivityImg()+"@303h_623w_2e",activity_img,options);
+    private void initB(ViewHolder holder,Dynamic dy,int position){
+        imageLoader.displayImage(ConstantJiao.aliUrl+dy.getActivityImg()+"@303h_623w_2e",holder.activity_img,options);
     }
 
 
@@ -312,9 +321,7 @@ public class DynamicAdapter extends BaseAdapter {
      */
     public void changeCollProStatus(int status,Dynamic dy){
         String productCode = dy.getProductCode();
-
         //获取本地的baseId--这应该是唯一的，对于每台智能设备来说
-
         //根据baseId获得绑定的账号
         RequestParams params = new RequestParams();
         //params.put("userCode",userCode);
@@ -333,5 +340,20 @@ public class DynamicAdapter extends BaseAdapter {
         });
     }
 
+
+    public static class  ViewHolder{
+        ImageView dy_shop_logo;
+        TextView dy_shop_name;
+        TextView dy_pro_name;
+        ImageView dy_pro_image;
+        LinearLayout fenxiang;
+        TextView dy_pro_order_price;
+        TextView dy_pro_sale_price;
+        TextView dy_city_name;
+        TextView dy_total_good_num;
+        TextView dy_coll_pro;
+
+        ImageView activity_img;
+    }
 
 }
