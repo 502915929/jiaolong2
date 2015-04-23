@@ -86,9 +86,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="gson-2.0" level="project" />
     <orderEntry type="library" exported="" name="afinal" level="project" />
-    <orderEntry type="library" exported="" name="mframework" level="project" />
     <orderEntry type="library" exported="" name="baidumapapi_v3_3_0" level="project" />
+    <orderEntry type="library" exported="" name="mframework" level="project" />
     <orderEntry type="library" exported="" name="locSDK_5.0" level="project" />
+    <orderEntry type="library" exported="" name="nineoldandroids-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="android-support-v4" level="project" />
     <orderEntry type="library" exported="" name="androidannotations-api-3.2" level="project" />
     <orderEntry type="library" exported="" name="android-async-http-1.4.6" level="project" />

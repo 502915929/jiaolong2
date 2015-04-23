@@ -2,32 +2,74 @@
 <items version="2" >
 
     <item
-        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\PullToReflesh_Library\unspecified\classes.jar"
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\library\unspecified\classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="3a011900ff372de7cd19bbc253a985990eae29ba">
-        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\classes-b04853aa922ba01bc072783e67e36b8acba7d3d4.jar" />
-    </item>
-    <item
-        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\libs\BaiduLBS_Android.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="ec535a4aca3b109afd880137393a48ba1b6fae26">
-        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\BaiduLBS_Android-a95c19204b8a6be31b6cd2a60c2a2c95ce0835e3.jar" />
-    </item>
-    <item
-        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\libs\android-support-v4.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="efec67655f6db90757faa37201efcee2a9ec3507">
-        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\android-support-v4-8d1c524350525836b3b60d5730e87327c8a53f24.jar" />
+        sha1="0575e46013586bc370ea1ec9a070f4188676bef4">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\classes-09e435ddfa58919d54d6b2c531986e63955122d5.jar" />
     </item>
     <item
         jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\appcompat_v7\unspecified\classes.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="3f5148d59a4c3725550edd2d0c69eb6836d1c7e5">
+        revision="22.0.1"
+        sha1="cf2472f14a73223cda15e547b33d4167cf23f6a5">
         <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\classes-c639674a2b56ca326849f9217a3f5da944271ff4.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\libs\baidumapapi_v3_3_0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="110659c4d195f1335d04be564045b6b8eb8d83f4">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\baidumapapi_v3_3_0-b385ced30a8a49cbd2a60804aa0d71f4763e0a71.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\libs\mframework.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="25509058b34a5ee08dbf66e57078e3083735d200">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\mframework-82c9557d3b23c792330e59dfd96af9afc7a0c94c.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\libs\gson-2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="00f7f0ca4ae3c64f0f35d518613aef95c3210ebd">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\gson-2.0-c52c07fedcd22119d4f102c919ff21ff1c82fe1b.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\libs\universal-image-loader-1.8.6.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="09995ba681982ca129af798c9eb21e79c4bffa45">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\universal-image-loader-1.8.6-d377ee797c1fe43283e2f4ff8f39935178bd6159.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\libs\locSDK_5.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="58ba7f330d7f1a0de4464791e73a3123a47fd1d3">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\locSDK_5.0-b04103f92927c399e2831baffb0527075a8b0254.jar" />
+    </item>
+    <item
+        jar="C:\Users\95\.gradle\caches\modules-2\files-2.1\com.loopj.android\android-async-http\1.4.6\a845a88238be0b5be9d238652c1bc0605ef91f52\android-async-http-1.4.6.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\android-async-http-1.4.6-f6aac5aba98f4c37a986204948e7ba43b3be27fc.jar" />
+    </item>
+    <item
+        jar="C:\Users\95\.gradle\caches\modules-2\files-2.1\org.androidannotations\androidannotations-api\3.2\89b33bb1e996eb2c4089f79d1b8651c71fe8e2d1\androidannotations-api-3.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="89b33bb1e996eb2c4089f79d1b8651c71fe8e2d1">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\androidannotations-api-3.2-76b0e5f1d1c693ac8e6a340489b72354b36993ec.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\library\unspecified\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="51f077bbb3d964cac29f3128b40ba336ed3033f4">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\classes-09e435ddfa58919d54d6b2c531986e63955122d5.jar" />
     </item>
     <item
         jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\appcompat_v7\unspecified\libs\android-support-v7-appcompat.jar"
@@ -37,6 +79,27 @@
         <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\android-support-v7-appcompat-7abeb0ca0873d19fc31c5c21488ba52c5d0d47dc.jar" />
     </item>
     <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\PullToReflesh_Library\unspecified\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1e247b9343134f88464947d107015e8a2a74ec21">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\classes-b04853aa922ba01bc072783e67e36b8acba7d3d4.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\appcompat_v7\unspecified\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="3f5148d59a4c3725550edd2d0c69eb6836d1c7e5">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\classes-c639674a2b56ca326849f9217a3f5da944271ff4.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\libs\afinal.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c4ac135813c88d31fbd5899816b3d190e8a47c46">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\afinal-39518913464a9399d3e964a8b94d5fbc1d241ed7.jar" />
+    </item>
+    <item
         jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\libs\universal-image-loader-1.8.6.jar"
         jumboMode="false"
         revision="20.0.0"
@@ -44,11 +107,32 @@
         <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\universal-image-loader-1.8.6-d377ee797c1fe43283e2f4ff8f39935178bd6159.jar" />
     </item>
     <item
-        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\library\unspecified\classes.jar"
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\appcompat_v7\unspecified\libs\android-support-v7-appcompat.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="aaa3ec7d7bfb3446a9190c5b1f601f1eb94745e7">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\android-support-v7-appcompat-7abeb0ca0873d19fc31c5c21488ba52c5d0d47dc.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\libs\nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-535c4068f137a73fd2c2e3f9829d257cc0abc31d.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\PullToReflesh_Library\unspecified\classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="0575e46013586bc370ea1ec9a070f4188676bef4">
-        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\classes-09e435ddfa58919d54d6b2c531986e63955122d5.jar" />
+        sha1="3a011900ff372de7cd19bbc253a985990eae29ba">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\classes-b04853aa922ba01bc072783e67e36b8acba7d3d4.jar" />
+    </item>
+    <item
+        jar="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\exploded-aar\微店源码\library\unspecified\libs\android-support-v4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="efec67655f6db90757faa37201efcee2a9ec3507">
+        <dex dex="G:\优商圈app\客户端模版app\微店源码\MicroShop\build\intermediates\pre-dexed\debug\android-support-v4-6dd6950fe9d17a355e87c95b6629b608abc1e951.jar" />
     </item>
 
 </items>

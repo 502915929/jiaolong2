@@ -1,4 +1,5 @@
-include ':library'
 include ':MicroShop'
 include ':PullToReflesh_Library'
 include ':appcompat_v7'
+
+include ':library'
