@@ -13,6 +13,11 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 public class AppContext extends Application {
 
+	public static final String baseId ="dsfsdfdsfs";
+	public static final String userCode="liqihao";
+
+	private static ImageLoader imageLoader;
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -39,6 +44,11 @@ public class AppContext extends Application {
 				.defaultDisplayImageOptions(defaultOptions).build();
 		ImageLoader.getInstance().init(config);
 		// -------------------------------------------------------------
+	}
+
+	public static ImageLoader getImageLoader(){
+		imageLoader=ImageLoader.getInstance();
+		return imageLoader;
 	}
 
 }

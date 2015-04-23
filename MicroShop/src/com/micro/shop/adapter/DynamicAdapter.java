@@ -20,6 +20,7 @@ import com.loopj.android.http.RequestParams;
 import com.micro.shop.R;
 import com.micro.shop.activity.ProductDetailActivity;
 import com.micro.shop.activity.ShopMainActivity;
+import com.micro.shop.activity.ShopMainActivity_;
 import com.micro.shop.constant.ConstantJiao;
 import com.micro.shop.entity.Dynamic;
 import com.micro.shop.net.HttpUtil;
@@ -227,11 +228,11 @@ public class DynamicAdapter extends BaseAdapter {
         holder.dy_shop_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Log.e("logo", "logo" + position);
+                Log.e("logo", "logo" + position);
                 Dynamic dy= dynamicList.get(position);
-                Intent intent =new Intent(context,ShopIndexActivity.class);
+                Intent intent =ShopMainActivity_.intent(context).get();
                 intent.putExtra("shopCode", dy.getShopCode());
-                context.startActivity(intent);*/
+                context.startActivity(intent);
             }
         });
 
@@ -327,7 +328,7 @@ public class DynamicAdapter extends BaseAdapter {
         //params.put("userCode",userCode);
         params.put("productCode",productCode);
         params.put("status",status);
-        HttpUtil.post(ConstantJiao.userCollProUrl, params, new JsonHttpResponseHandler() {
+        HttpUtil.getClient().post(ConstantJiao.userCollProUrl, params, new JsonHttpResponseHandler() {
             //成功调用
             public void onSuccess(int statusCode, Header[] headers, JSONArray array) {
 

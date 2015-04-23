@@ -82,79 +82,117 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <RelativeLayout
+
+
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shop_main_icon_bg" >
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/shop_main_img"
-                    android:layout_width="69dp"
-                    android:layout_height="69dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/dyni_icon"
-                    android:contentDescription="@null"
-                    android:scaleType="centerInside" />
-
-                <TextView
-                    android:id="@+id/shop_main_collect_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/shop_main_selects"
-                    android:padding="5dp"
-                    android:text="@string/dynamic_collect_btn"
-                    android:textColor="@drawable/text_shop_main_select"
-                    android:textSize="@dimen/front_16" />
+                    android:id="@+id/shop_main_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shop_main_icon_bg"
+                    android:layout_gravity="fill"
+                    android:scaleType="centerCrop"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/shop_main_collect_btn"
-                    android:layout_toRightOf="@id/shop_main_img"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/shop_main_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/product_item_name"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/front_16" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="fill"
+                    android:weightSum="12"
+                    >
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        >
+                        <ImageView
+                            android:layout_gravity="center_vertical"
+                            android:id="@+id/shop_main_img"
+                            android:layout_width="69dp"
+                            android:layout_height="69dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="10dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/dyni_icon"
+                            android:contentDescription="@null"
+                            android:scaleType="centerCrop" />
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal" >
+                        android:layout_weight="11"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/shop_main_img"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical"
+                        >
 
                         <TextView
+                            android:id="@+id/shop_main_name"
+                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text="@string/shop_main_intro"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/front_12" />
+                            android:textSize="@dimen/front_16" />
 
-                        <ImageView
-                            android:id="@+id/shop_main__intro_img"
-                            android:layout_width="11dp"
-                            android:layout_height="10.5dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="2dp"
-                            android:adjustViewBounds="true"
-                            android:background="@drawable/shop_main_intro_icon"
-                            android:contentDescription="@null"
-                            android:scaleType="centerInside" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/shop_slogan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/shop_main_intro"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/front_12" />
+
+                            <ImageView
+                                android:id="@+id/shop_main__intro_img"
+                                android:layout_width="11dp"
+                                android:layout_height="10.5dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="2dp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/shop_main_intro_icon"
+                                android:contentDescription="@null"
+                                android:scaleType="centerInside" />
+                        </LinearLayout>
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/shop_main_collect_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/shop_main_selects"
+                        android:padding="5dp"
+                        android:text="@string/dynamic_collect_btn"
+                        android:textColor="@drawable/text_shop_main_select"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/front_16" />
+
+
                 </LinearLayout>
-            </RelativeLayout>
+            </FrameLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -175,12 +213,13 @@
                         android:orientation="vertical" >
 
                         <TextView
+                            android:id="@+id/shop_pro_num"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center"
                             android:singleLine="true"
-                            android:text="@string/product_item_b_count"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/front_14" />
 
@@ -220,12 +259,59 @@
                         android:orientation="vertical" >
 
                         <TextView
+                            android:id="@+id/shop_hot_num"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center"
                             android:singleLine="true"
-                            android:text="@string/product_item_s_count"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/front_14" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="2dp"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="推荐"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/front_14" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="1dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/search_item_line"
+                        android:contentDescription="@null"
+                        android:scaleType="centerInside" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/shop_activity_num"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/front_14" />
 
@@ -265,12 +351,13 @@
                         android:orientation="vertical" >
 
                         <TextView
+                            android:id="@+id/shop_collect_num"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center"
                             android:singleLine="true"
-                            android:text="@string/product_item_g_count"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/front_14" />
 
@@ -399,6 +486,7 @@
                     android:background="@color/white"
                     android:baselineAligned="false"
                     android:orientation="horizontal"
+                    android:visibility="visible"
                     android:weightSum="7" >
 
                     <RelativeLayout
@@ -408,12 +496,13 @@
                         android:layout_weight="3" >
 
                         <ImageView
+                            android:id="@+id/shop_top_one_image"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/three_one"
                             android:contentDescription="@null"
-                            android:scaleType="centerInside" />
+
+                            android:scaleType="centerCrop" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -422,12 +511,12 @@
                             android:background="#33000000" >
 
                             <TextView
+                                android:id="@+id/shop_top_one_sale_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
                                 android:layout_margin="10dp"
-                                android:text="@string/product_news_price"
                                 android:textColor="#FE9900"
                                 android:textSize="@dimen/front_16" />
                         </RelativeLayout>
@@ -450,12 +539,12 @@
                             android:layout_weight="1" >
 
                             <ImageView
+                                android:id="@+id/shop_top_two_image"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:adjustViewBounds="true"
-                                android:background="@drawable/three_two"
                                 android:contentDescription="@null"
-                                android:scaleType="centerInside" />
+                                android:scaleType="centerCrop" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -464,12 +553,12 @@
                                 android:background="#33000000" >
 
                                 <TextView
+                                    android:id="@+id/shop_top_two_sale_price"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
                                     android:layout_margin="10dp"
-                                    android:text="@string/product_news_price"
                                     android:textColor="#FE9900"
                                     android:textSize="@dimen/front_16" />
                             </RelativeLayout>
@@ -482,12 +571,12 @@
                             android:layout_weight="1" >
 
                             <ImageView
+                                android:id="@+id/shop_top_three_image"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:adjustViewBounds="true"
-                                android:background="@drawable/three_three"
                                 android:contentDescription="@null"
-                                android:scaleType="centerInside" />
+                                android:scaleType="centerCrop" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -496,12 +585,12 @@
                                 android:background="#33000000" >
 
                                 <TextView
+                                    android:id="@+id/shop_top_three_sale_price"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
                                     android:layout_margin="10dp"
-                                    android:text="@string/product_news_price"
                                     android:textColor="#FE9900"
                                     android:textSize="@dimen/front_16" />
                             </RelativeLayout>
@@ -526,12 +615,12 @@
                         android:layout_weight="3" >
 
                         <ImageView
+                            android:id="@+id/info_one_image"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/three_one"
                             android:contentDescription="@null"
-                            android:scaleType="centerInside" />
+                            android:scaleType="centerCrop" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -540,12 +629,12 @@
                             android:background="#33000000" >
 
                             <TextView
+                                android:id="@+id/info_one_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
                                 android:layout_margin="10dp"
-                                android:text="@string/product_news_price"
                                 android:textColor="#FE9900"
                                 android:textSize="@dimen/front_16" />
                         </RelativeLayout>
@@ -568,12 +657,12 @@
                             android:layout_weight="1" >
 
                             <ImageView
+                                android:id="@+id/info_two_image"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:adjustViewBounds="true"
-                                android:background="@drawable/three_two"
                                 android:contentDescription="@null"
-                                android:scaleType="centerInside" />
+                                android:scaleType="centerCrop" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -582,12 +671,12 @@
                                 android:background="#33000000" >
 
                                 <TextView
+                                    android:id="@+id/info_two_price"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
                                     android:layout_margin="10dp"
-                                    android:text="@string/product_news_price"
                                     android:textColor="#FE9900"
                                     android:textSize="@dimen/front_16" />
                             </RelativeLayout>
@@ -600,12 +689,12 @@
                             android:layout_weight="1" >
 
                             <ImageView
+                                android:id="@+id/info_three_image"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:adjustViewBounds="true"
-                                android:background="@drawable/three_three"
                                 android:contentDescription="@null"
-                                android:scaleType="centerInside" />
+                                android:scaleType="centerCrop" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -614,12 +703,12 @@
                                 android:background="#33000000" >
 
                                 <TextView
+                                    android:id="@+id/info_three_price"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
                                     android:layout_margin="10dp"
-                                    android:text="@string/product_news_price"
                                     android:textColor="#FE9900"
                                     android:textSize="@dimen/front_16" />
                             </RelativeLayout>

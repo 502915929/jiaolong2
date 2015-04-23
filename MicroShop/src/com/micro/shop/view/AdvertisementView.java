@@ -18,7 +18,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.micro.shop.R;
+import com.micro.shop.adapter.PageIndicatorAdapter;
+import com.micro.shop.constant.ConstantJiao;
 import com.micro.shop.entity.AdEntity;
+import com.micro.shop.entity.Product;
+import com.micro.shop.entity.ProductImage;
 import com.micro.shop.fragment.FixRatioImageFragment;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -36,9 +40,11 @@ public class AdvertisementView extends RelativeLayout {
 	 */
 	public static final int STYLE_SMALL_INDEX_POINER = 2;
 
+	private AdvertisementView.OnImageClickListener mListener;
+
 	private int style;
 	private int selectedImage;
-	private List<AdEntity> mData;
+	List<ProductImage> mData;
 
 	private FragmentActivity mContext;
 	private TextView mTvAtlasNumber;
@@ -49,7 +55,7 @@ public class AdvertisementView extends RelativeLayout {
 	private CirclePageIndicator mIndicator;
 	// private ImageButton mIbtnLeft, mIbtnRight;
 	private PageIndicatorAdapter mAdapter;
-	private OnImageClickListener mListener;
+
 
 	public AdvertisementView(Context context) {
 		super(context);
@@ -111,7 +117,7 @@ public class AdvertisementView extends RelativeLayout {
 		}
 	}
 
-	public void setData(FragmentActivity context, List<AdEntity> data, int style) {
+	public void setData(FragmentActivity context, List<ProductImage> data, int style) {
 		this.mContext = context;
 		this.selectedImage = 0;
 		this.mData = data;
@@ -163,7 +169,7 @@ public class AdvertisementView extends RelativeLayout {
 		}
 	};
 
-	private void addImageItem(AdEntity entity) {
+	private void addImageItem(ProductImage entity) {
 		if (mData != null) {
 			if (!mData.contains(entity)) {
 				mData.add(entity);
@@ -171,9 +177,9 @@ public class AdvertisementView extends RelativeLayout {
 		}
 	}
 
-	public void addImageItems(List<AdEntity> list) {
+	public void addImageItems(List<ProductImage> list) {
 		if (mData != null) {
-			for (AdEntity e : list) {
+			for (ProductImage e : list) {
 				addImageItem(e);
 			}
 			mIndicator.notifyDataSetChanged();
@@ -190,25 +196,12 @@ public class AdvertisementView extends RelativeLayout {
 		return (mData == null) ? 0 : mData.size();
 	}
 
-	public AdEntity getData(int position) {
+	public ProductImage getData(int position) {
 		return (mData == null) ? null : mData.get(position);
 	}
 
-	public void setOnImageClickListener(OnImageClickListener listener) {
-		this.mListener = listener;
-	}
+	protected class PageIndicatorAdapter  extends FragmentPagerAdapter {
 
-	/**
-	 * 图片点击回掉接口
-	 * 
-	 */
-	public interface OnImageClickListener {
-		public void onClickItem(int position);
-
-		public void onDoubleClickItem(int position);
-	}
-
-	protected class PageIndicatorAdapter extends FragmentPagerAdapter {
 		public PageIndicatorAdapter(FragmentManager fm) {
 			super(fm);
 		}
@@ -222,8 +215,8 @@ public class AdvertisementView extends RelativeLayout {
 		public Fragment getItem(int position) {
 			FixRatioImageFragment fragment = new FixRatioImageFragment();
 			Bundle bundle = new Bundle();
-			bundle.putString(FixRatioImageFragment.ARGUMENT_IMAGE_URL, mData
-					.get(position).getUrl());
+			bundle.putString(FixRatioImageFragment.ARGUMENT_IMAGE_URL, ConstantJiao.aliUrl+mData
+					.get(position).getImageUrl()+"@!mobile-product-header");
 			final int fragmentIndex = position;
 
 			fragment.setArguments(bundle);
@@ -247,7 +240,21 @@ public class AdvertisementView extends RelativeLayout {
 
 		@Override
 		public int getCount() {
-			return mData.size();
+			return mData==null?0:mData.size();
+
 		}
+	}
+
+	public void setOnImageClickListener(AdvertisementView.OnImageClickListener listener) {
+		this.mListener = listener;
+	}
+
+	/**
+	 * 图片点击回掉接口
+	 *
+	 */
+	public interface OnImageClickListener {
+		public void onClickItem(int position);
+		public void onDoubleClickItem(int position);
 	}
 }

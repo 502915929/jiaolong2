@@ -78,7 +78,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.micro.shop.activity.ShopMainActivity"
+            android:name="com.micro.shop.activity.ShopMainActivity_"
             android:label="@string/app_name" >
         </activity>
         <activity

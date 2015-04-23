@@ -14,7 +14,7 @@
     <string name="dynamic_address">重庆</string>
     <string name="dynamic_collect_btn">+  收藏</string>
     <string name="dynamic_has_collect_btn">已收藏</string>
-    <string name="dynamic_collect">56</string>
+    <string name="dynamic_collect">0</string>
     <string name="dynamic_share">分享</string>
     <string name="dynamic_news_price">￥129.00</string>
     <string name="dynamic_old_price">￥420.00</string>
@@ -49,23 +49,23 @@
     <string name="product_service_one">7天无理由</string>
     <string name="product_service_two">正品保障</string>
     <string name="product_service_three">如实描述</string>
-    <string name="product_comments">查看所有3条评论</string>
+    <string name="product_comments">最新评论</string>
     <string name="product_comments_one">美妞腿脸朝这看:大白，最爱</string>
     <string name="product_comments_two">兔Bady:大白</string>
     <string name="product_item_name">马先生的工作室</string>
     <string name="product_item_mark">123收藏</string>
     <string name="product_item_b_count">20</string>
     <string name="product_item_b">宝贝</string>
-    <string name="product_item_s">上新</string>
+    <string name="product_item_s">活动</string>
     <string name="product_item_s_count">10</string>
     <string name="product_item_g_count">10</string>
     <string name="product_item_g">关注</string>
     <string name="product_btn_more">查看更多分类</string>
     <string name="product_btn_dian">进入店铺</string>
-    <string name="shop_main_intro">简介</string>
+    <string name="shop_main_intro">店铺宣言未填写</string>
     <string name="shop_main_ban">排行榜</string>
     <string name="shop_main_ban_collect">收藏排行</string>
-    <string name="shop_main_ban_sell">销量排行</string>
+    <string name="shop_main_ban_sell">访问排行</string>
     <string name="shop_main_like">猜你喜欢</string>
     <string name="shop_main_bao">宝贝分类</string>
     <string name="shop_main_d_intro">店铺简介</string>
@@ -88,5 +88,11 @@
     <string name="product_img_four">尺码：XS(155/80A) S(160/84A) M(165/88A)</string>
     <string name="pop_shop_main_phone">电话：023-40360265</string>
     <string name="pop_shop_main_weixin">微信：568952362</string>
+    <string name="product_comments_three">sdfs:真是很漂亮啊</string>
+    <string name="product_info_num">访问数</string>
+    <string name="product_collect_num">收藏数</string>
+    <string name="product_good_num">点赞数</string>
+    <string name="product_comment_num">评论数</string>
+    <string name="product_head_title">商品详情</string>
 
 </resources>

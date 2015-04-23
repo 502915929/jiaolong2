@@ -17,11 +17,10 @@
         <ImageView
             android:id="@+id/dynamic_activity_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="170dp"
             android:adjustViewBounds="true"
             android:contentDescription="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/dyni_two"
+            android:scaleType="centerCrop"
             />
 
 

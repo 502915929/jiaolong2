@@ -40,6 +40,7 @@ public class ProductDetailFragment extends Fragment {
 						mScroll.fullScroll(ScrollView.FOCUS_UP);
 					}
 				});
+
 			}
 		});
 		return view;

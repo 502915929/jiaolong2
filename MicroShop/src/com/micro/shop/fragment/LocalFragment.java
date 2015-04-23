@@ -27,6 +27,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.micro.shop.R;
 import com.micro.shop.activity.ProductDetailActivity;
 import com.micro.shop.entity.AdEntity;
+import com.micro.shop.entity.ProductImage;
 import com.micro.shop.view.ActionHeadBar;
 import com.micro.shop.view.AdvertisementView;
 import com.micro.shop.view.AdvertisementView.OnImageClickListener;
@@ -72,16 +73,16 @@ public class LocalFragment extends Fragment {
 				gridview.setGravity(Gravity.CENTER);
 				// ---------------------九宫格-------------------------
 				// ---------------------图集-------------------------
-				List<AdEntity> dataList = new ArrayList<AdEntity>();
-				dataList.add(new AdEntity("drawable://" + R.drawable.banner1,
+				List<ProductImage> dataList = new ArrayList<ProductImage>();
+				dataList.add(new ProductImage("drawable://" + R.drawable.banner1,
 						""));
-				dataList.add(new AdEntity("drawable://" + R.drawable.banner2,
+				dataList.add(new ProductImage("drawable://" + R.drawable.banner2,
 						""));
-				dataList.add(new AdEntity("drawable://" + R.drawable.banner3,
+				dataList.add(new ProductImage("drawable://" + R.drawable.banner3,
 						""));
-				dataList.add(new AdEntity("drawable://" + R.drawable.banner4,
+				dataList.add(new ProductImage("drawable://" + R.drawable.banner4,
 						""));
-				dataList.add(new AdEntity("drawable://" + R.drawable.banner5,
+				dataList.add(new ProductImage("drawable://" + R.drawable.banner5,
 						""));
 				if (adView.getDataCount() == 0) {
 					adView.setData(getActivity(), dataList,

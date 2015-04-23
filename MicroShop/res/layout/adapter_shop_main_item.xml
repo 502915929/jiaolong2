@@ -17,9 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="0.5dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/shop_main_item_img"
             android:contentDescription="@null"
-            android:scaleType="centerInside" />
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/shop_main_item_intro_title"
@@ -27,7 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:lines="2"
-            android:text="@string/local_intro"
             android:textColor="#4f4f4f"
             android:textSize="@dimen/front_12" />
 
@@ -46,7 +44,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@string/product_news_price"
             android:textColor="#FE9900"
             android:textSize="@dimen/front_14" />
     </LinearLayout>

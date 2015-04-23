@@ -18,8 +18,12 @@ MERGED from Î¢µêÔ´Âë:PullToReflesh_Library:unspecified:7:5
 MERGED from Î¢µêÔ´Âë:library:unspecified:7:5
 	android:targetSdkVersion
 		ADDED from AndroidManifest.xml:9:9
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
 	android:minSdkVersion
 		ADDED from AndroidManifest.xml:8:9
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
 uses-permission#android.permission.GET_ACCOUNTS
 ADDED from AndroidManifest.xml:11:5
 	android:name
@@ -186,7 +190,7 @@ ADDED from AndroidManifest.xml:76:9
 		ADDED from AndroidManifest.xml:78:13
 	android:name
 		ADDED from AndroidManifest.xml:77:13
-activity#com.micro.shop.activity.ShopMainActivity
+activity#com.micro.shop.activity.ShopMainActivity_
 ADDED from AndroidManifest.xml:80:9
 	android:label
 		ADDED from AndroidManifest.xml:82:13

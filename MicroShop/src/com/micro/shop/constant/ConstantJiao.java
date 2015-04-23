@@ -29,6 +29,15 @@ public interface ConstantJiao {
      */
     String findShopMapMsgUrl=host_url+host+"dynamic/findMapMsg.htm";
 
+    /**
+     * 用户进入店铺首页加载首页数据url
+     */
+    String showShopIndexUrl=host_url+host+"dynamic/shopIndex.htm";
+
+    /**
+     * 用户进入商品资料页查看商品资料
+     */
+    String showProDetailUrl=host_url+host+"dynamic/productDetail.htm";
 
     //****************************************************************************************************************//
 

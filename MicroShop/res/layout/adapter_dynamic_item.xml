@@ -84,11 +84,10 @@
             <ImageView
                 android:id="@+id/dynamic_item_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="210dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@null"
-                android:scaleType="fitXY"
-                android:src="@drawable/dyni_one"
+                android:scaleType="centerCrop"
                 />
 
             <RelativeLayout
@@ -171,7 +170,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:duplicateParentState="true"
-                    android:text="@string/dynamic_address"
                     android:textColor="@drawable/text_select"
                     android:textSize="@dimen/front_14" />
             </LinearLayout>

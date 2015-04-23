@@ -16,7 +16,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 /**
- * <b>单一图片碎片，{@link ImageRunnerView}组件</b>
+ * <b>单一图片碎片，{@link }组件</b>
  * 
  * @author EM
  * 
