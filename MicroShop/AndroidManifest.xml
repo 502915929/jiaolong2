@@ -93,6 +93,10 @@
             android:name="com.micro.shop.activity.ProductImageDetailActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.micro.shop.activity.ActivityMsgActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

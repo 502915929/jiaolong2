@@ -18,10 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.micro.shop.R;
-import com.micro.shop.adapter.PageIndicatorAdapter;
 import com.micro.shop.constant.ConstantJiao;
 import com.micro.shop.entity.AdEntity;
-import com.micro.shop.entity.Product;
 import com.micro.shop.entity.ProductImage;
 import com.micro.shop.fragment.FixRatioImageFragment;
 import com.viewpagerindicator.CirclePageIndicator;

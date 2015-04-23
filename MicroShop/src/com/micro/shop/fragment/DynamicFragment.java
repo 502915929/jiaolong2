@@ -1,30 +1,17 @@
 package com.micro.shop.fragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Handler.Callback;
-import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -35,13 +22,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.micro.shop.R;
-import com.micro.shop.activity.MainActivity;
-import com.micro.shop.activity.ProductDetailActivity;
-import com.micro.shop.activity.ShopMainActivity;
 import com.micro.shop.adapter.DynamicAdapter;
 import com.micro.shop.constant.ConstantJiao;
 import com.micro.shop.entity.Dynamic;
-import com.micro.shop.entity.DynamicEntity;
 import com.micro.shop.net.HttpUtil;
 
 import org.apache.http.Header;
@@ -57,8 +40,6 @@ public class DynamicFragment extends Fragment {
 	public static final int PULL_UP_ONLY = 0;
 	public static final int PULL_DOWN_ONLY = 1;
 	public static final int PULL_BOTH = 2;
-	public static final int CODE = 1000;
-	public static final int MORE = 1001;
 
 	private BaseAdapter mAdapter;
 	private ProgressBar mPbLoadingBar;

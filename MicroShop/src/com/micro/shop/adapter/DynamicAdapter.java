@@ -8,18 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.micro.shop.R;
+import com.micro.shop.activity.ActivityMsgActivity;
 import com.micro.shop.activity.ProductDetailActivity;
-import com.micro.shop.activity.ShopMainActivity;
 import com.micro.shop.activity.ShopMainActivity_;
 import com.micro.shop.constant.ConstantJiao;
 import com.micro.shop.entity.Dynamic;
@@ -216,11 +214,11 @@ public class DynamicAdapter extends BaseAdapter {
         holder.dy_shop_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Log.e("logo","logo"+position);
+                Log.e("logo", "logo" + position);
                 Dynamic dy= dynamicList.get(position);
-                Intent intent =new Intent(context,ShopIndexActivity.class);
-                intent.putExtra("shopCode",dy.getShopCode());
-                context.startActivity(intent);*/
+                Intent intent =ShopMainActivity_.intent(context).get();
+                intent.putExtra("shopCode", dy.getShopCode());
+                context.startActivity(intent);
             }
         });
 
@@ -240,27 +238,27 @@ public class DynamicAdapter extends BaseAdapter {
         holder.dy_pro_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Log.e("---->", "s商品详情" + position);
+                Log.e("---->", "s商品详情" + position);
                 Dynamic dy = dynamicList.get(position);
-                Intent intent = new Intent(context, ProductMsgActivity.class);
+                Intent intent = new Intent(context, ProductDetailActivity.class);
                 intent.putExtra("productCode", dy.getProductCode());
-                context.startActivity(intent);*/
+                context.startActivity(intent);
             }
         });
 
-        //商品名进入商品详情页
+        //商品图进入商品详情页
         holder.dy_pro_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Log.e("---->", "s商品详情" + position);
+                Log.e("---->", "s商品详情" + position);
                 Dynamic dy = dynamicList.get(position);
-                Intent intent = new Intent(context, ProductMsgActivity.class);
+                Intent intent = new Intent(context, ProductDetailActivity.class);
                 intent.putExtra("productCode", dy.getProductCode());
-                context.startActivity(intent);*/
+                context.startActivity(intent);
             }
         });
 
-        //点击点赞数进入商品详情
+        //点击点赞数判断是否登录
         /*good_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,8 +310,18 @@ public class DynamicAdapter extends BaseAdapter {
      * @param dy
      * @param position
      */
-    private void initB(ViewHolder holder,Dynamic dy,int position){
+    private void initB(ViewHolder holder,Dynamic dy, final int position){
         imageLoader.displayImage(ConstantJiao.aliUrl+dy.getActivityImg()+"@303h_623w_2e",holder.activity_img,options);
+        holder.activity_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("start","跳转到活动页面");
+                Dynamic dy = dynamicList.get(position);
+                Intent intent = new Intent(context, ActivityMsgActivity.class);
+                intent.putExtra("activityCode", dy.getActivityCode());
+                context.startActivity(intent);
+            }
+        });
     }
 
 

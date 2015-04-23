@@ -3,7 +3,6 @@ package com.micro.shop.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Application;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -34,11 +33,8 @@ import com.loopj.android.http.RequestParams;
 import com.micro.shop.R;
 import com.micro.shop.config.AppContext;
 import com.micro.shop.constant.ConstantJiao;
-import com.micro.shop.entity.AdEntity;
 import com.micro.shop.entity.Product;
 import com.micro.shop.entity.ProductDetail;
-import com.micro.shop.entity.ProductImage;
-import com.micro.shop.entity.ProductLabel;
 import com.micro.shop.entity.ShopBase;
 import com.micro.shop.entity.UserCommentPrudoct;
 import com.micro.shop.fragment.ProductDetailFragment;
@@ -47,7 +43,6 @@ import com.micro.shop.util.NumberFormatUtil;
 import com.micro.shop.view.AdvertisementView;
 import com.micro.shop.view.AdvertisementView.OnImageClickListener;
 
-import org.androidannotations.annotations.EActivity;
 import org.apache.http.Header;
 
 /**
@@ -92,7 +87,6 @@ public class ProductDetailActivity extends FragmentActivity
 	Gson gson = new Gson();
 
 	String productCode;
-	List<ProductImage> imgList;
 	List<String> labelList;
 	List<UserCommentPrudoct> commentList;
 	Product pro ;
@@ -103,8 +97,6 @@ public class ProductDetailActivity extends FragmentActivity
 	Double salePrice;
 	Double oldPrice;
 	Runnable runnable;
-	boolean handler_post;
-
 
 	//*****************************************
 	private List<Fragment> fragments;

@@ -214,3 +214,9 @@ ADDED from AndroidManifest.xml:92:9
 		ADDED from AndroidManifest.xml:94:13
 	android:name
 		ADDED from AndroidManifest.xml:93:13
+activity#com.micro.shop.activity.ActivityMsgActivity
+ADDED from AndroidManifest.xml:96:9
+	android:label
+		ADDED from AndroidManifest.xml:98:13
+	android:name
+		ADDED from AndroidManifest.xml:97:13

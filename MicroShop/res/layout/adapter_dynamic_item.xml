@@ -31,7 +31,9 @@
                     android:layout_margin="10dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@null"
-                    android:src="@drawable/dyni_icon" />
+                    android:src="@drawable/dyni_icon"
+                    android:scaleType="centerCrop"
+                    />
 
                 <TextView
                     android:id="@+id/dynamic_item_icon_title"
