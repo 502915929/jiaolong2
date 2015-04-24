@@ -24,6 +24,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <!--点赞墙-->
+            <GridView
+                android:id="@+id/good_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_item_bg"
+                android:numColumns="10"
+
+                >
+            </GridView>
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -190,6 +202,14 @@
                     android:textSize="@dimen/front_12" />
             </LinearLayout>
 
+            <com.micro.shop.view.InnerListView
+                android:id="@+id/product_attr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.micro.shop.view.InnerListView>
+
+
             <TextView
                 android:id="@+id/product_comments"
                 android:layout_width="match_parent"
@@ -210,6 +230,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
+                android:visibility="gone"
                 android:textSize="@dimen/front_14" />
 
             <TextView
@@ -221,6 +242,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
+                android:visibility="gone"
                 android:textSize="@dimen/front_14" />
 
             <TextView
@@ -232,6 +254,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
+                android:visibility="gone"
                 android:textSize="@dimen/front_14" />
 
             <RelativeLayout
@@ -496,12 +519,18 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:baselineAligned="false" >
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                >
 
                 <RelativeLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" >
+                    android:layout_margin="10dp"
+                    android:layout_gravity="left"
+                    android:gravity="left"
+                    >
 
                     <RelativeLayout
                         android:id="@+id/product_img_tab_one"
@@ -516,145 +545,67 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="2dp"
                             android:singleLine="true"
-                            android:text="@string/product_tab_one_title"
+                            android:text="@string/product_tab_two_title"
                             android:textColor="@color/apptheme"
                             android:textSize="@dimen/front_16" />
 
-                        <RelativeLayout
-                            android:id="@+id/product_img_tab_one_line"
-                            android:layout_width="wrap_content"
-                            android:layout_height="2dp"
-                            android:layout_alignLeft="@id/product_img_tab_one_title"
-                            android:layout_alignRight="@id/product_img_tab_one_title"
-                            android:layout_below="@id/product_img_tab_one_title"
-                            android:layout_marginTop="10dp"
-                            android:background="@color/apptheme" >
-                        </RelativeLayout>
+
                     </RelativeLayout>
 
-                    <ImageView
-                        android:layout_width="1dp"
-                        android:layout_height="16dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:adjustViewBounds="true"
-                        android:background="@drawable/search_item_line"
-                        android:contentDescription="@null"
-                        android:scaleType="centerInside" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" >
-
-                    <RelativeLayout
-                        android:id="@+id/product_img_tab_two"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/product_img_tab_two_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="2dp"
-                            android:singleLine="true"
-                            android:text="@string/product_tab_two_title"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/front_16" />
-
-                        <RelativeLayout
-                            android:id="@+id/product_img_tab_two_line"
-                            android:layout_width="wrap_content"
-                            android:layout_height="2dp"
-                            android:layout_alignLeft="@id/product_img_tab_two_title"
-                            android:layout_alignRight="@id/product_img_tab_two_title"
-                            android:layout_below="@id/product_img_tab_two_title"
-                            android:layout_marginTop="10dp"
-                            android:background="@color/apptheme"
-                            android:visibility="gone" >
-                        </RelativeLayout>
-                    </RelativeLayout>
-
-                    <ImageView
-                        android:layout_width="1dp"
-                        android:layout_height="16dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:adjustViewBounds="true"
-                        android:background="@drawable/search_item_line"
-                        android:contentDescription="@null"
-                        android:scaleType="centerInside" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" >
-
-                    <RelativeLayout
-                        android:id="@+id/product_img_tab_three"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/product_img_tab_three_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="2dp"
-                            android:singleLine="true"
-                            android:text="@string/product_tab_three_title"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/front_16" />
-
-                        <RelativeLayout
-                            android:id="@+id/product_img_tab_three_line"
-                            android:layout_width="wrap_content"
-                            android:layout_height="2dp"
-                            android:layout_alignLeft="@id/product_img_tab_three_title"
-                            android:layout_alignRight="@id/product_img_tab_three_title"
-                            android:layout_below="@id/product_img_tab_three_title"
-                            android:layout_marginTop="10dp"
-                            android:background="@color/apptheme"
-                            android:visibility="gone" >
-                        </RelativeLayout>
-                    </RelativeLayout>
-                </RelativeLayout>
             </LinearLayout>
 
-            <RelativeLayout
+            <com.micro.shop.view.InnerListView
+                android:id="@+id/pro_image_view"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#A1A1A1" >
-            </RelativeLayout>
+                android:layout_height="wrap_content">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/layout_adv_style_pointer_vp_page2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            </com.micro.shop.view.InnerListView>
 
 
         </LinearLayout>
+
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="80dp"
+        >
+    <!--返回顶部按键-->
+    <ImageView
+        android:id="@+id/product_detail_scroll_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        android:scaleType="centerInside"
+        android:layout_gravity="end"
+        android:visibility="visible"
+        android:src="@drawable/scroll_to_top" />
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical"
-        android:background="@color/white"
-        android:visibility="gone"
+        android:background="@drawable/layout_item_bg"
+        android:visibility="visible"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         >
+
+
 
         <!--底部按键-->
         <LinearLayout
@@ -664,7 +615,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:baselineAligned="false"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:visibility="visible"
             >
 
             <LinearLayout
@@ -810,5 +763,7 @@
                 android:src="@drawable/share_selects" />
         </RelativeLayout>
     </RelativeLayout>
+
+
 
 </FrameLayout><!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/activity_product_detail.xml -->

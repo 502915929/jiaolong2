@@ -17,6 +17,8 @@ public class ProductDetail {
     private List<ProductImage> imageList;
     private List<UserCommentPrudoct> commentProList;
     private List<String> labelList;
+    private List<ProductAttribute> attrList;
+    private List<ClientUserBase> goodList;
     /**
      * 用户是否收藏该商品
      */
@@ -137,5 +139,21 @@ public class ProductDetail {
 
     public void setProCommentNum(Long proCommentNum) {
         this.proCommentNum = proCommentNum;
+    }
+
+    public List<ProductAttribute> getAttrList() {
+        return attrList;
+    }
+
+    public void setAttrList(List<ProductAttribute> attrList) {
+        this.attrList = attrList;
+    }
+
+    public List<ClientUserBase> getGoodList() {
+        return goodList;
+    }
+
+    public void setGoodList(List<ClientUserBase> goodList) {
+        this.goodList = goodList;
     }
 }

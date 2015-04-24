@@ -68,7 +68,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/product_detail_scroll_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,6 +78,6 @@
         android:adjustViewBounds="true"
         android:contentDescription="@null"
         android:scaleType="centerInside"
-        android:src="@drawable/scroll_to_top" />
+        android:src="@drawable/scroll_to_top" />-->
 
 </RelativeLayout>

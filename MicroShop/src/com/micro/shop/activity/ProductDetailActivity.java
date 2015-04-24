@@ -1,24 +1,19 @@
 package com.micro.shop.activity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -31,17 +26,23 @@ import com.google.gson.Gson;
 import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.micro.shop.R;
+import com.micro.shop.adapter.ProductMsgAttrAdapter;
+import com.micro.shop.adapter.ProductMsgGoodAdapter;
+import com.micro.shop.adapter.ProductMsgImgAdapter;
 import com.micro.shop.config.AppContext;
 import com.micro.shop.constant.ConstantJiao;
+import com.micro.shop.entity.ClientUserBase;
 import com.micro.shop.entity.Product;
+import com.micro.shop.entity.ProductAttribute;
 import com.micro.shop.entity.ProductDetail;
+import com.micro.shop.entity.ProductImage;
 import com.micro.shop.entity.ShopBase;
 import com.micro.shop.entity.UserCommentPrudoct;
-import com.micro.shop.fragment.ProductDetailFragment;
 import com.micro.shop.net.HttpUtil;
 import com.micro.shop.util.NumberFormatUtil;
 import com.micro.shop.view.AdvertisementView;
 import com.micro.shop.view.AdvertisementView.OnImageClickListener;
+import com.micro.shop.view.InnerListView;
 
 import org.apache.http.Header;
 
@@ -51,8 +52,7 @@ import org.apache.http.Header;
  * @author B.B.D
  *
  */
-public class ProductDetailActivity extends FragmentActivity
-		implements OnClickListener {
+public class ProductDetailActivity extends FragmentActivity {
 	private TextView product_old_price, mTvComments;
 	private RelativeLayout mRlBack, mRlHome;
 	private LinearLayout mLlCollect, mLlShop, mLlType;
@@ -76,6 +76,17 @@ public class ProductDetailActivity extends FragmentActivity
 	private ImageView search_item_img;
 	private TextView product_item_name;
 	private TextView product_item_mark;
+	private ImageView backTopImage;
+
+	/***************************/
+	private GridView goodView;
+	private InnerListView product_attr;
+	private InnerListView imgListView;
+
+	ProductMsgImgAdapter imgAdapter;
+	ProductMsgAttrAdapter attrAdapter;
+	ProductMsgGoodAdapter goodAdapter;
+	/***************************/
 	Handler handler = new Handler();
 
 	private TextView info_num;
@@ -85,10 +96,13 @@ public class ProductDetailActivity extends FragmentActivity
 	private ScrollView parent_scroll_line;
 
 	Gson gson = new Gson();
-
 	String productCode;
 	List<String> labelList;
 	List<UserCommentPrudoct> commentList;
+	List<ProductImage> headImageList;
+	List<ProductImage> imageList;
+	List<ProductAttribute> attrList;
+	List<ClientUserBase> goodList;
 	Product pro ;
 	ShopBase shopBase;
 
@@ -99,14 +113,7 @@ public class ProductDetailActivity extends FragmentActivity
 	Runnable runnable;
 
 	//*****************************************
-	private List<Fragment> fragments;
-	private TextView mTabOneTitle, mTabTwoTitle, mTabThreeTitle;
-	private RelativeLayout mBackBtn, mHomeBtn, mTabOne, mTabTwo, mTabThree,
-			mTabOneLine, mTabTwoLine, mTabThreeLine;
-	private ViewPager mViewPager;
 	private PopupWindow pop;
-
-	private  ViewPagerAdapter pagerAdapter;
 	//******************************************
 
 
@@ -154,24 +161,13 @@ public class ProductDetailActivity extends FragmentActivity
 		good_num=(TextView)findViewById(R.id.good_num);
 		comment_num=(TextView)findViewById(R.id.comment_num);
 
-		//*****************
-		/*mBackBtn = (RelativeLayout) findViewById(R.id.shop_main_head_back);
-		mHomeBtn = (RelativeLayout) findViewById(R.id.shop_main_head_home);*/
-		mTabOne = (RelativeLayout) findViewById(R.id.product_img_tab_one);
-		mTabTwo = (RelativeLayout) findViewById(R.id.product_img_tab_two);
-		mTabThree = (RelativeLayout) findViewById(R.id.product_img_tab_three);
-		mTabOneTitle = (TextView) findViewById(R.id.product_img_tab_one_title);
-		mTabTwoTitle = (TextView) findViewById(R.id.product_img_tab_two_title);
-		mTabThreeTitle = (TextView) findViewById(R.id.product_img_tab_three_title);
-		mTabOneLine = (RelativeLayout) findViewById(R.id.product_img_tab_one_line);
-		mTabTwoLine = (RelativeLayout) findViewById(R.id.product_img_tab_two_line);
-		mTabThreeLine = (RelativeLayout) findViewById(R.id.product_img_tab_three_line);
-		mViewPager = (ViewPager) findViewById(R.id.layout_adv_style_pointer_vp_page2);
-		//*****************
-
 		parent_scroll_line=(ScrollView)findViewById(R.id.parent_scroll_line);
 		product_head=(RelativeLayout)findViewById(R.id.product_head);
+		backTopImage = (ImageView) findViewById(R.id.product_detail_scroll_top);
 
+		goodView=(GridView)findViewById(R.id.good_view);
+		product_attr=(InnerListView)findViewById(R.id.product_attr);
+		imgListView=(InnerListView)findViewById(R.id.pro_image_view);
 	}
 
 	private void initData() {
@@ -234,6 +230,11 @@ public class ProductDetailActivity extends FragmentActivity
 					};
 					handler.postDelayed(runnable, 5000);
 				}
+				if(v.getScaleY()>=product_item_mark.getScaleY()){
+					backTopImage.setVisibility(View.VISIBLE);
+				}else{
+					backTopImage.setVisibility(View.GONE);
+				}
 				return false;
 			}
 
@@ -248,60 +249,27 @@ public class ProductDetailActivity extends FragmentActivity
 		pop.setOutsideTouchable(true);
 		// 设置此参数获得焦点，否则无法点击
 		// pop.setFocusable(true);
-		fragments = new ArrayList<Fragment>();
-		//ProductDetailFragment fragment =new ProductDetailFragment();
-		fragments.add(new ProductDetailFragment());
-		fragments.add(new ProductDetailFragment());
-		fragments.add(new ProductDetailFragment());
-		pagerAdapter=new ViewPagerAdapter(getSupportFragmentManager(), fragments);
-		mViewPager.setAdapter(pagerAdapter);
-		select(0);
-		pagerAdapter.notifyDataSetChanged();
 
-
-		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-			@Override
-			public void onPageSelected(int arg0) {
-				//select(arg0);
-			}
-
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-
-			}
-		});
-
-
-		mTabOne.setOnClickListener(new OnClickListener() {
-
+		//点击返回顶部
+		backTopImage.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				select(0);
+				new Handler().post(new Runnable() {
+					@Override
+					public void run() {
+						parent_scroll_line.fullScroll(ScrollView.FOCUS_UP);
+					}
+				});
 			}
 		});
-		mTabTwo.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				select(1);
-			}
-		});
-		mTabThree.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				select(2);
-			}
-		});
 
 	}
 
+	/**
+	 * 加载数据
+	 */
 	public void ajaxData(){
 		Intent intent = getIntent();
 		if(intent.hasExtra("productCode")){
@@ -311,25 +279,26 @@ public class ProductDetailActivity extends FragmentActivity
 			params.put("productCode",productCode);
 			params.put("userCode", AppContext.userCode);
 			HttpUtil.getClient().post(ConstantJiao.showProDetailUrl, params, new BaseJsonHttpResponseHandler<ProductDetail>() {
-
 				@Override
 				public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, ProductDetail response) {
 					detail=response;
+					imageList=response.getImageList();
+					if(imageList.size()>5){
+						headImageList=imageList.subList(0,5);
+					}else{
+						headImageList=imageList;
+					}
 					if (adView.getDataCount() == 0) {
-						adView.setData(ProductDetailActivity.this, response.getImageList(),
+						adView.setData(ProductDetailActivity.this,headImageList,
 								AdvertisementView.STYLE_POINER_INDICATOR);
 					}
 					adView.setOnImageClickListener(new OnImageClickListener() {
-
 						@Override
 						public void onDoubleClickItem(int position) {
-
 						}
 
 						@Override
 						public void onClickItem(int position) {
-
-
 						}
 					});
 					pro=response.getProduct();
@@ -340,7 +309,7 @@ public class ProductDetailActivity extends FragmentActivity
 						product_news_price.setText(priceEm+ NumberFormatUtil.conventToString(salePrice));
 						product_old_price.setText(priceEm+NumberFormatUtil.conventToString(oldPrice));
 					}else{
-						product_news_price.setText(priceEm+NumberFormatUtil.conventToString(oldPrice));
+						product_news_price.setText(priceEm + NumberFormatUtil.conventToString(oldPrice));
 						product_old_price.setVisibility(View.GONE);
 					}
 					labelList = response.getLabelList();
@@ -367,28 +336,50 @@ public class ProductDetailActivity extends FragmentActivity
 					commentList=response.getCommentProList();
 					if(commentList!=null&&commentList.size()>0){
 						mTvComments.setText("查看所有"+detail.getProCommentNum()+"条评论");
-						product_comments_one.setText(commentList.get(0).getCommentContent());
-						product_comments_two.setText(commentList.get(1).getCommentContent());
-						product_comments_three.setText(commentList.get(2).getCommentContent());
+						int i=0;
+						for(;i<commentList.size();i++){
+							if(i==0){
+								product_comments_one.setText(commentList.get(0).getCommentContent());
+								product_comments_one.setVisibility(View.VISIBLE);
+							}else if(i==1){
+								product_comments_two.setText(commentList.get(1).getCommentContent());
+								product_comments_two.setVisibility(View.VISIBLE);
+							}else if(i==2){
+								product_comments_three.setText(commentList.get(2).getCommentContent());
+								product_comments_three.setVisibility(View.VISIBLE);
+							}
+						}
 					}else{
 						mTvComments.setText("还没有任何评论...");
-						product_comments_one.setVisibility(View.GONE);
-						product_comments_two.setVisibility(View.GONE);
-						product_comments_three.setVisibility(View.GONE);
+
 					}
 					shopBase=response.getShopBase();
 					if(shopBase.getShopLogo()!=null&&!"".equals(shopBase.getShopLogo())){
-						AppContext.getImageLoader().displayImage(ConstantJiao.aliUrl+shopBase.getShopLogo(),search_item_img);
+						AppContext.getImageLoader().displayImage(ConstantJiao.aliUrl + shopBase.getShopLogo(), search_item_img);
 					}
 					product_item_name.setText(shopBase.getShopName());
 					if(shopBase.getSlogan()!=null&&!"".equals(shopBase.getSlogan())){
-						product_item_mark.setText("店铺心情："+shopBase.getSlogan());
+						product_item_mark.setText("店铺心情：" + shopBase.getSlogan());
 					}
 					info_num.setText(detail.getProInfoNum().toString());
 					collect_num.setText(detail.getProCollectNum().toString());
 					good_num.setText(detail.getProGoodNum().toString());
 					comment_num.setText(detail.getProCommentNum().toString());
 
+					//点赞墙
+					goodList=detail.getGoodList();
+					goodAdapter=new ProductMsgGoodAdapter(ProductDetailActivity.this,goodList);
+					goodView.setAdapter(goodAdapter);
+					goodAdapter.notifyDataSetChanged();
+					//商品属性
+					attrList=detail.getAttrList();
+					attrAdapter=new ProductMsgAttrAdapter(ProductDetailActivity.this,attrList);
+					product_attr.setAdapter(attrAdapter);
+					attrAdapter.notifyDataSetChanged();
+					//图片预览
+					imgAdapter = new ProductMsgImgAdapter(ProductDetailActivity.this,imageList);
+					imgListView.setAdapter(imgAdapter);
+					imgAdapter.notifyDataSetChanged();
 				}
 
 				@Override
@@ -406,66 +397,9 @@ public class ProductDetailActivity extends FragmentActivity
 	}
 
 
-	private void select(int index) {
-		mViewPager.setCurrentItem(index);
-		if (index == 0) {
-			mTabOneTitle.setTextColor(Color.parseColor("#D0393B"));
-			mTabTwoTitle.setTextColor(Color.parseColor("#000000"));
-			mTabThreeTitle.setTextColor(Color.parseColor("#000000"));
-			mTabOneLine.setVisibility(View.VISIBLE);
-			mTabTwoLine.setVisibility(View.GONE);
-			mTabThreeLine.setVisibility(View.GONE);
-		} else if (index == 1) {
-			mTabTwoTitle.setTextColor(Color.parseColor("#D0393B"));
-			mTabOneTitle.setTextColor(Color.parseColor("#000000"));
-			mTabThreeTitle.setTextColor(Color.parseColor("#000000"));
-			mTabOneLine.setVisibility(View.GONE);
-			mTabTwoLine.setVisibility(View.VISIBLE);
-			mTabThreeLine.setVisibility(View.GONE);
-		} else if (index == 2) {
-			mTabOneTitle.setTextColor(Color.parseColor("#000000"));
-			mTabTwoTitle.setTextColor(Color.parseColor("#000000"));
-			mTabThreeTitle.setTextColor(Color.parseColor("#D0393B"));
-			mTabOneLine.setVisibility(View.GONE);
-			mTabTwoLine.setVisibility(View.GONE);
-			mTabThreeLine.setVisibility(View.VISIBLE);
-		}
-	}
 
 
 
-	public class ViewPagerAdapter extends FragmentStatePagerAdapter {
-		private List<Fragment> fragments;
-
-		public ViewPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
-			super(fm);
-			this.fragments = fragments;
-		}
-
-		@Override
-		public Fragment getItem(int arg0) {
-			return fragments==null?null: fragments.get(arg0);
-		}
-
-		@Override
-		public int getCount() {
-			return fragments==null?0:fragments.size();
-		}
-
-		@Override
-		public void notifyDataSetChanged() {
-			super.notifyDataSetChanged();
-		}
-	}
-
-
-
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()){
-
-		}
-	}
 
 
 

@@ -6,6 +6,8 @@ package com.micro.shop.constant;
 public interface ConstantJiao {
 
     String host_url ="http://192.168.1.119:8080/";
+   //String host_url ="http://192.168.1.161:8080/";
+  // String host_url ="http://192.168.1.169:8080/";
     String host="qqt_up/";
 
     /**
@@ -38,6 +40,14 @@ public interface ConstantJiao {
      * 用户进入商品资料页查看商品资料
      */
     String showProDetailUrl=host_url+host+"dynamic/productDetail.htm";
+
+
+    String proDetailTab_one_url=host_url+host+"dynamic/findProductAttributeList.htm";
+
+    /**
+     * 加载所有图片详情 （参数  productCode,start,number）
+     */
+    String proDetailTab_two_url=host_url+host+"dynamic/findImageList.htm";
 
     //****************************************************************************************************************//
 

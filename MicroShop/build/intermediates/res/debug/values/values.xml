@@ -306,7 +306,6 @@
     <string name="product_comment_num">评论数</string>
     <string name="product_comments">最新评论</string>
     <string name="product_comments_one">美妞腿脸朝这看:大白，最爱</string>
-    <string name="product_comments_three">sdfs:真是很漂亮啊</string>
     <string name="product_comments_two">兔Bady:大白</string>
     <string name="product_good_num">点赞数</string>
     <string name="product_head_title">商品详情</string>
@@ -329,9 +328,9 @@
     <string name="product_service_one">7天无理由</string>
     <string name="product_service_three">如实描述</string>
     <string name="product_service_two">正品保障</string>
-    <string name="product_tab_one_title">图文详细</string>
-    <string name="product_tab_three_title">店铺推荐</string>
-    <string name="product_tab_two_title">产品参数</string>
+    <string name="product_tab_one_title">商品参数</string>
+    <string name="product_tab_three_title">评论列表</string>
+    <string name="product_tab_two_title">图片预览</string>
     <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/build/intermediates/exploded-aar/微店源码/PullToReflesh_Library/unspecified/res/values/values.xml -->
     <eat-comment/>
     <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
