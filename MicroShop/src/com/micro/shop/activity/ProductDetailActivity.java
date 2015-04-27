@@ -43,6 +43,7 @@ import com.micro.shop.util.NumberFormatUtil;
 import com.micro.shop.view.AdvertisementView;
 import com.micro.shop.view.AdvertisementView.OnImageClickListener;
 import com.micro.shop.view.InnerListView;
+import com.micro.shop.view.ProductDetailView;
 
 import org.apache.http.Header;
 
@@ -56,7 +57,7 @@ public class ProductDetailActivity extends FragmentActivity {
 	private TextView product_old_price, mTvComments;
 	private RelativeLayout mRlBack, mRlHome;
 	private LinearLayout mLlCollect, mLlShop, mLlType;
-	private AdvertisementView adView;
+	private ProductDetailView adView;
 	private RelativeLayout product_head;
 
 	private TextView product_comments_one;
@@ -135,7 +136,7 @@ public class ProductDetailActivity extends FragmentActivity {
 		mLlCollect = (LinearLayout) findViewById(R.id.product_collect);
 		mLlType = (LinearLayout) findViewById(R.id.product_detail_type);
 		mTvComments = (TextView) findViewById(R.id.product_comments);
-		adView = (AdvertisementView) findViewById(R.id.business_list_adv_atlas);
+		adView = (ProductDetailView) findViewById(R.id.business_list_adv_atlas);
 		mRlBack = (RelativeLayout) findViewById(R.id.product_head_back);
 
 		product_news_price=(TextView)findViewById(R.id.product_news_price);

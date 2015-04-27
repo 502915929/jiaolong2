@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.micro.shop.R;
 import com.micro.shop.constant.ConstantJiao;
 import com.micro.shop.entity.AdEntity;
+import com.micro.shop.entity.LocalData;
 import com.micro.shop.entity.ProductImage;
 import com.micro.shop.fragment.FixRatioImageFragment;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -42,7 +43,7 @@ public class AdvertisementView extends RelativeLayout {
 
 	private int style;
 	private int selectedImage;
-	List<ProductImage> mData;
+	List<LocalData> mData;
 
 	private FragmentActivity mContext;
 	private TextView mTvAtlasNumber;
@@ -115,7 +116,7 @@ public class AdvertisementView extends RelativeLayout {
 		}
 	}
 
-	public void setData(FragmentActivity context, List<ProductImage> data, int style) {
+	public void setData(FragmentActivity context, List<LocalData> data, int style) {
 		this.mContext = context;
 		this.selectedImage = 0;
 		this.mData = data;
@@ -167,7 +168,7 @@ public class AdvertisementView extends RelativeLayout {
 		}
 	};
 
-	private void addImageItem(ProductImage entity) {
+	private void addImageItem(LocalData entity) {
 		if (mData != null) {
 			if (!mData.contains(entity)) {
 				mData.add(entity);
@@ -175,9 +176,9 @@ public class AdvertisementView extends RelativeLayout {
 		}
 	}
 
-	public void addImageItems(List<ProductImage> list) {
+	public void addImageItems(List<LocalData> list) {
 		if (mData != null) {
-			for (ProductImage e : list) {
+			for (LocalData e : list) {
 				addImageItem(e);
 			}
 			mIndicator.notifyDataSetChanged();
@@ -194,7 +195,7 @@ public class AdvertisementView extends RelativeLayout {
 		return (mData == null) ? 0 : mData.size();
 	}
 
-	public ProductImage getData(int position) {
+	public LocalData getData(int position) {
 		return (mData == null) ? null : mData.get(position);
 	}
 
@@ -214,7 +215,7 @@ public class AdvertisementView extends RelativeLayout {
 			FixRatioImageFragment fragment = new FixRatioImageFragment();
 			Bundle bundle = new Bundle();
 			bundle.putString(FixRatioImageFragment.ARGUMENT_IMAGE_URL, ConstantJiao.aliUrl+mData
-					.get(position).getImageUrl()+"@!mobile-product-header");
+					.get(position).getProductImage()+"@!mobile-product-header");
 			final int fragmentIndex = position;
 
 			fragment.setArguments(bundle);

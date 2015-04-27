@@ -49,6 +49,11 @@ public interface ConstantJiao {
      */
     String proDetailTab_two_url=host_url+host+"dynamic/findImageList.htm";
 
+    /**
+     * 根据定位坐标返回本地周边商圈商品列表
+     */
+    String localProListUrl=host_url+host+"dynamic/findLocalProList.htm";
+
     //****************************************************************************************************************//
 
 

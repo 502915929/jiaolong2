@@ -50,7 +50,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:duplicateParentState="true"
-                        android:text="@string/local_address"
                         android:textColor="@drawable/text_select"
                         android:textSize="@dimen/front_14" />
                 </LinearLayout>
@@ -84,7 +83,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:duplicateParentState="true"
-                        android:text="@string/local_time"
                         android:textColor="@drawable/text_select"
                         android:textSize="@dimen/front_14" />
                 </LinearLayout>
@@ -97,7 +95,6 @@
                 android:layout_above="@id/local_item_intro_child"
                 android:layout_marginLeft="45dp"
                 android:lines="2"
-                android:text="@string/local_intro"
                 android:textColor="#4f4f4f"
                 android:textSize="@dimen/front_12" />
         </RelativeLayout>
@@ -105,12 +102,11 @@
         <ImageView
             android:id="@+id/local_item_image"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="match_parent"
             android:layout_above="@id/local_item_intro"
             android:adjustViewBounds="true"
-            android:background="@drawable/local_item_image"
             android:contentDescription="@null"
-            android:scaleType="centerInside" />
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/local_item_icon"
@@ -122,9 +118,8 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/local_item_icon_one"
             android:contentDescription="@null"
-            android:scaleType="centerInside" />
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/local_item_name"
@@ -133,7 +128,6 @@
             android:layout_above="@id/local_item_intro"
             android:layout_marginBottom="5dp"
             android:layout_toRightOf="@id/local_item_icon"
-            android:text="@string/local_name"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/front_12" />
     </RelativeLayout>

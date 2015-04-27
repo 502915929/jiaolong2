@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,175 +22,140 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.model.LatLng;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.loopj.android.http.BaseJsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.micro.shop.R;
 import com.micro.shop.activity.ProductDetailActivity;
+import com.micro.shop.adapter.LocalFragmentAdapter;
+import com.micro.shop.constant.ConstantJiao;
 import com.micro.shop.entity.AdEntity;
+import com.micro.shop.entity.LocalData;
 import com.micro.shop.entity.ProductImage;
+import com.micro.shop.net.HttpUtil;
 import com.micro.shop.view.ActionHeadBar;
 import com.micro.shop.view.AdvertisementView;
 import com.micro.shop.view.AdvertisementView.OnImageClickListener;
 import com.micro.shop.view.InnerGridView;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.apache.http.Header;
 
 /**
  * 本地
- * 
+ *
  * @author B.B.D
- * 
+ *
  */
 public class LocalFragment extends Fragment {
-	private static final int CODE = 1000;
-	private static final int MORE = 1001;
 	private ProgressBar mBar;
 	private PullToRefreshScrollView mPrScrollView;
 	private LinearLayout mContainer;
 	private ActionHeadBar headBar;
-	private int page = 1;
+	private int page = 0;
 	private AdvertisementView adView;
 	private LocalFragmentAdapter adapter;
-	private Handler handler = new Handler(new Callback() {
 
-		@Override
-		public boolean handleMessage(Message msg) {
-			setProgressBarVisible(false);
-			if (msg.what == CODE) {
 
-				headBar.setTitle("本地");
-				// ---------------------九宫格-------------------------
-				InnerGridView gridview = new InnerGridView(getActivity());
-				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.MATCH_PARENT,
-						LinearLayout.LayoutParams.MATCH_PARENT);
-				lp.setMargins(10, 10, 10, 10);
-				gridview.setLayoutParams(lp);
-				getContentView().addView(gridview);
-				adapter = new LocalFragmentAdapter(getActivity());
-				gridview.setAdapter(adapter);
-				gridview.setNumColumns(2);
-				gridview.setVerticalSpacing(10);
-				gridview.setHorizontalSpacing(10);
-				gridview.setGravity(Gravity.CENTER);
-				// ---------------------九宫格-------------------------
-				// ---------------------图集-------------------------
-				List<ProductImage> dataList = new ArrayList<ProductImage>();
-				dataList.add(new ProductImage("drawable://" + R.drawable.banner1,
-						""));
-				dataList.add(new ProductImage("drawable://" + R.drawable.banner2,
-						""));
-				dataList.add(new ProductImage("drawable://" + R.drawable.banner3,
-						""));
-				dataList.add(new ProductImage("drawable://" + R.drawable.banner4,
-						""));
-				dataList.add(new ProductImage("drawable://" + R.drawable.banner5,
-						""));
-				if (adView.getDataCount() == 0) {
-					adView.setData(getActivity(), dataList,
-							AdvertisementView.STYLE_POINER_INDICATOR);
-				}
-				adView.setOnImageClickListener(new OnImageClickListener() {
+	Gson gson = new Gson();
+	//图片控件
+	DisplayImageOptions options;
+	InnerGridView gridview;
+	//************定位******************************************************************
+	/**
+	 * 定位的客户端
+	 */
+	private LocationClient mLocClient;
+	public MyLocationListenner myListener = new MyLocationListenner();
 
-					@Override
-					public void onDoubleClickItem(int position) {
+	/**
+	 * 定位选项
+	 */
+	LocationClientOption option;
+	boolean isFirstLoc = true;// 是否首次定位
 
-					}
+	private double latitude;
+	private double longitude;
+	private List<LocalData> myList;
+	//***********end*******************************************************************
 
-					@Override
-					public void onClickItem(int position) {
-						// 点击图集的图片进入下一个模块
-					}
-				});
-				// ---------------------图集-------------------------
-				// ---------------------上拉刷新,下拉加载设置-------------------------
-				mPrScrollView.setMode(Mode.BOTH);
-				mPrScrollView
-						.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
-
-							@Override
-							public void onPullDownToRefresh(
-									PullToRefreshBase<ScrollView> refreshView) {
-								refreshView.getLoadingLayoutProxy(true, false)
-										.setPullLabel("上拉刷新");
-								handler.postDelayed(new Runnable() {
-									@Override
-									public void run() {
-										page = 1;
-										sendData(MORE);
-									}
-								}, 1000);
-							}
-
-							@Override
-							public void onPullUpToRefresh(
-									PullToRefreshBase<ScrollView> refreshView) {
-								refreshView.getLoadingLayoutProxy(false, true)
-										.setPullLabel("下拉查看更多");
-								refreshView.getLoadingLayoutProxy(false, true)
-										.setReleaseLabel("放开以加载");
-								// TODO 加载更多
-								handler.postDelayed(new Runnable() {
-									@Override
-									public void run() {
-										if (page + 1 <= 3) {
-											sendData(MORE);
-											++page;
-										} else {
-											Toast.makeText(getActivity(),
-													"没有更多内容了!",
-													Toast.LENGTH_SHORT).show();
-											mPrScrollView.onRefreshComplete();
-										}
-									}
-								}, 1000);
-							}
-
-						});
-				// ---------------------上拉刷新,下拉加载设置-------------------------
-			}
-			if (msg.what == MORE) {
-				if (mPrScrollView.isRefreshing())
-					onRefreshComplete();
-				if (page == 1) {
-					adapter.update();
-				} else {
-					adapter.addAll();
-				}
-			}
-			return false;
-		}
-	});
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		sendData(CODE);
+	}
+
+
+
+	public void init(){
+		headBar.setTitle("本地");
+		// ---------------------九宫格-------------------------
+		gridview = new InnerGridView(getActivity());
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,
+				LinearLayout.LayoutParams.MATCH_PARENT);
+		lp.setMargins(10, 10, 10, 10);
+		gridview.setLayoutParams(lp);
+		gridview.setNumColumns(2);
+		gridview.setVerticalSpacing(10);
+		gridview.setHorizontalSpacing(10);
+		gridview.setGravity(Gravity.CENTER);
+		getContentView().addView(gridview);
+		mPrScrollView.setMode(Mode.BOTH);
+		mPrScrollView
+				.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
+
+					@Override
+					public void onPullDownToRefresh(
+							PullToRefreshBase<ScrollView> refreshView) {
+						refreshView.getLoadingLayoutProxy(true, false)
+								.setPullLabel("下拉刷新");
+						page = 0;
+						mPrScrollView.setRefreshing();
+						setProgressBarVisible(true);
+						mPrScrollView.setMode(Mode.BOTH);
+						ajaxData(latitude, longitude, page + "", "6");
+					}
+
+					@Override
+					public void onPullUpToRefresh(
+							PullToRefreshBase<ScrollView> refreshView) {
+						refreshView.getLoadingLayoutProxy(false, true)
+								.setPullLabel("上拉查看更多");
+						refreshView.getLoadingLayoutProxy(false, true)
+								.setReleaseLabel("放开以加载");
+						// TODO 加载更多
+						++page;
+						setProgressBarVisible(true);
+						mPrScrollView.setRefreshing();
+						ajaxData(latitude, longitude, (page * 6) + "", "6");
+					}
+
+				});
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+							 Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_local, container, false);
 		initView(view);
+		init();
+		findLocation();
 		return view;
-	}
-
-	public void sendData(final int code) {
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				handler.postDelayed(new Runnable() {
-
-					@Override
-					public void run() {
-						Message message = Message.obtain();
-						message.what = code;
-						handler.sendMessage(message);
-					}
-				}, 2 * 1000);
-			}
-		}).start();
 	}
 
 	private void initView(View view) {
@@ -208,7 +174,7 @@ public class LocalFragment extends Fragment {
 
 	/**
 	 * 下拉刷新监听
-	 * 
+	 *
 	 * @param listener
 	 */
 	public void setOnRefreshListener(
@@ -218,7 +184,7 @@ public class LocalFragment extends Fragment {
 
 	/**
 	 * 主体视图
-	 * 
+	 *
 	 * @return
 	 */
 	public LinearLayout getContentView() {
@@ -227,7 +193,7 @@ public class LocalFragment extends Fragment {
 
 	/**
 	 * 下拉刷新、上拉刷新监听(可以把上拉刷新监听实现方法中来处理成加载更多)
-	 * 
+	 *
 	 * @param listener
 	 */
 	public void setOnRefreshListener(
@@ -242,70 +208,101 @@ public class LocalFragment extends Fragment {
 		mPrScrollView.onRefreshComplete();
 	}
 
-	public class LocalFragmentAdapter extends BaseAdapter {
-		private Context context;
-		private LayoutInflater inflater;
-		private List<String> list;
 
-		public LocalFragmentAdapter(Context context) {
-			super();
-			this.context = context;
-			this.list = new ArrayList<String>();
-			this.list.add("1");
-			this.list.add("1");
-			this.list.add("1");
-			this.list.add("1");
-			this.list.add("1");
-			this.list.add("1");
-			this.inflater = LayoutInflater.from(this.context);
+	/**
+	 * 开始定位
+	 */
+	public void findLocation(){
+		mLocClient = new LocationClient(getActivity());
+		mLocClient.registerLocationListener(myListener);
+		option = new LocationClientOption();
+		option.setOpenGps(true);// 打开gps
+		option.setCoorType("bd09l1"); // 设置坐标类型
+		option.setScanSpan(500);//当不设此项，或者所设的整数值小于1000（ms）时，采用一次定位模式。
+		mLocClient.setLocOption(option);
+		mLocClient.start();
+	}
 
-		}
+	public void ajaxData(double latitude,double longitude, final String start,String number){
+		RequestParams params= new RequestParams();
+		params.put("latitude",latitude);
+		params.put("longitude",longitude);
+		params.add("start", start);
+		params.add("number", number);
+		HttpUtil.getClient().post(ConstantJiao.localProListUrl, params, new BaseJsonHttpResponseHandler<List<LocalData>>() {
 
-		public void addAll() {
-			this.list.add("1");
-			this.list.add("1");
-			this.list.add("1");
-			this.list.add("1");
-			this.list.add("1");
-			this.list.add("1");
-			notifyDataSetChanged();
-		}
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, List<LocalData> localList) {
+				setProgressBarVisible(false);
+				// ---------------------九宫格-------------------------
+				// ---------------------图集-------------------------
 
-		public void update() {
-			this.list.clear();
-			addAll();
-		}
-
-		@Override
-		public int getCount() {
-			return list.size();
-		}
-
-		@Override
-		public Object getItem(int arg0) {
-			return list.get(arg0);
-		}
-
-		@Override
-		public long getItemId(int arg0) {
-			return arg0;
-		}
-
-		@Override
-		public View getView(int position, View view, ViewGroup container) {
-			if (view == null)
-				view = inflater.inflate(R.layout.adapter_local_item, container,
-						false);
-			// 列表点击操作
-			view.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					startActivity(new Intent(context,
-							ProductDetailActivity.class));
+				/*if (adView.getDataCount() == 0) {
+					adView.setData(getActivity(), localList,
+							AdvertisementView.STYLE_POINER_INDICATOR);
 				}
-			});
-			return view;
-		}
+				adView.setOnImageClickListener(new OnImageClickListener() {
+
+					@Override
+					public void onDoubleClickItem(int position) {
+
+					}
+
+					@Override
+					public void onClickItem(int position) {
+						// 点击图集的图片进入下一个模块
+					}
+				});*/
+
+				if(start.equals("0")){
+					myList=localList;
+				}else{
+					myList.addAll(localList);
+				}
+				adapter = new LocalFragmentAdapter(getActivity(),myList);
+				gridview.setAdapter(adapter);
+				adapter.notifyDataSetChanged();
+				if(localList==null||localList.size()==0){
+					Toast.makeText(getActivity(), "没有更多内容了!", Toast.LENGTH_SHORT).show();
+					mPrScrollView.setMode(Mode.PULL_FROM_START);
+				}
+				mPrScrollView.onRefreshComplete();
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers, Throwable throwable, String rawJsonData, List<LocalData> errorResponse) {
+				Toast.makeText(getActivity(), "网络异常，请稍后重试", Toast.LENGTH_SHORT);
+			}
+
+			@Override
+			protected List<LocalData> parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
+				return gson.fromJson(rawJsonData,new TypeToken<List<LocalData>>(){}.getType());
+			}
+		});
 
 	}
+
+	/**
+	 * 定位SDK监听函数
+	 */
+	public class MyLocationListenner implements BDLocationListener {
+
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			// map view 销毁后不在处理新接收的位置
+			if (location == null ) {
+				return;
+			}
+			latitude=location.getLatitude();
+			longitude=location.getLongitude();
+			Log.e("定位坐标","纬度="+latitude+" 经度="+longitude);
+			ajaxData(latitude, longitude, "0", "6");
+		}
+
+		public void onReceivePoi(BDLocation poiLocation) {
+			Log.e("the location is------>", poiLocation.getProvince() + poiLocation.getCity() + poiLocation.getDistrict() + poiLocation.getStreet());
+		}
+	}
+
+
 }
