@@ -41,7 +41,7 @@
     <string name="search_item_tel">电话</string>
     <string name="search_item_dian">进店逛逛</string>
     <string name="search_item_map">地图</string>
-    <string name="search_input_value">咖啡</string>
+    <string name="search_input_value">店铺名或商品</string>
     <string name="product_collect">收藏</string>
     <string name="product_name">春日可爱日系原点套头针织衫</string>
     <string name="product_news_price">￥168</string>
@@ -62,7 +62,7 @@
     <string name="product_item_g">关注</string>
     <string name="product_btn_more">查看更多分类</string>
     <string name="product_btn_dian">进入店铺</string>
-    <string name="shop_main_intro">店铺宣言未填写</string>
+    <string name="shop_main_intro">店铺简介未填写</string>
     <string name="shop_main_ban">排行榜</string>
     <string name="shop_main_ban_collect">收藏排行</string>
     <string name="shop_main_ban_sell">访问排行</string>

@@ -343,7 +343,7 @@
     <eat-comment/>
     <string name="reg_btn">注册</string>
     <string name="reg_verification">验证码</string>
-    <string name="search_input_value">咖啡</string>
+    <string name="search_input_value">店铺名或商品</string>
     <string name="search_item_address">咖啡店        回龙观</string>
     <string name="search_item_dian">进店逛逛</string>
     <string name="search_item_distance">326米</string>
@@ -359,7 +359,7 @@
     <string name="shop_main_ban_sell">访问排行</string>
     <string name="shop_main_bao">宝贝分类</string>
     <string name="shop_main_d_intro">店铺简介</string>
-    <string name="shop_main_intro">店铺宣言未填写</string>
+    <string name="shop_main_intro">店铺简介未填写</string>
     <string name="shop_main_like">猜你喜欢</string>
     <string name="shop_main_tel">联系方式</string>
     <string name="tab_four">我的</string>

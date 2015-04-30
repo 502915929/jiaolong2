@@ -44,14 +44,14 @@ public final class R {
 	public static final class drawable {
 		public static final int default_ptr_flip = 0x7f020061;
 		public static final int default_ptr_rotate = 0x7f020062;
-		public static final int indicator_arrow = 0x7f020079;
-		public static final int indicator_bg_bottom = 0x7f02007a;
-		public static final int indicator_bg_top = 0x7f02007b;
+		public static final int indicator_arrow = 0x7f020080;
+		public static final int indicator_bg_bottom = 0x7f020081;
+		public static final int indicator_bg_top = 0x7f020082;
 	}
 	public static final class id {
 		public static final int both = 0x7f08001b;
 		public static final int disabled = 0x7f08001c;
-		public static final int fl_inner = 0x7f080124;
+		public static final int fl_inner = 0x7f08012a;
 		public static final int flip = 0x7f080022;
 		public static final int gridview = 0x7f080003;
 		public static final int manualOnly = 0x7f08001d;
@@ -59,10 +59,10 @@ public final class R {
 		public static final int pullFromEnd = 0x7f08001f;
 		public static final int pullFromStart = 0x7f080020;
 		public static final int pullUpFromBottom = 0x7f080021;
-		public static final int pull_to_refresh_image = 0x7f080125;
-		public static final int pull_to_refresh_progress = 0x7f080126;
-		public static final int pull_to_refresh_sub_text = 0x7f080128;
-		public static final int pull_to_refresh_text = 0x7f080127;
+		public static final int pull_to_refresh_image = 0x7f08012b;
+		public static final int pull_to_refresh_progress = 0x7f08012c;
+		public static final int pull_to_refresh_sub_text = 0x7f08012e;
+		public static final int pull_to_refresh_text = 0x7f08012d;
 		public static final int rotate = 0x7f080023;
 		public static final int scrollview = 0x7f080007;
 		public static final int webview = 0x7f080008;

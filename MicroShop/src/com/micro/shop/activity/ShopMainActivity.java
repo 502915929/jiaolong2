@@ -353,12 +353,12 @@ public class ShopMainActivity extends Activity implements OnClickListener{
 	 */
 	public void  shopContext(){
 		if (shopBase.getShopLogo() != null) {
-			imageLoader.displayImage(ConstantJiao.aliUrl + shopBase.getShopLogo() + "@61h_61w_0e", shop_logo, options);
+			imageLoader.displayImage(ConstantJiao.aliUrl + shopBase.getShopLogo() + "@61-1ci.png", shop_logo, options);
 		}
 		if (shopBase.getShopName() != null) {
 			shop_name.setText(shopBase.getShopName());
 		}
-		if (shopBase.getSlogan() != null) {
+		if (shopBase.getSlogan() != null&&!"".equals(shopBase.getSlogan())) {
 			shop_slogan.setText(shopBase.getSlogan());
 		}
 		if (shopBase.getShopBackground() != null) {

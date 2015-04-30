@@ -87,7 +87,7 @@ public class LocalFragmentAdapter extends BaseAdapter {
 
         }
         if(local.getShopLogo()!=null&&!"".equals(local.getShopLogo())){
-            AppContext.getImageLoader().displayImage(ConstantJiao.aliUrl+local.getShopLogo(),viewHolder.local_item_icon);
+            AppContext.getImageLoader().displayImage(ConstantJiao.aliUrl+local.getShopLogo()+"@67-1ci.png",viewHolder.local_item_icon);
         }
         viewHolder.local_item_intro_title.setText(local.getProductName());
         viewHolder.local_item_name.setText(local.getShopName());

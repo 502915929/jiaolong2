@@ -231,10 +231,23 @@ public class ProductDetailActivity extends FragmentActivity {
 					};
 					handler.postDelayed(runnable, 5000);
 				}
-				if(v.getScaleY()>=product_item_mark.getScaleY()){
-					backTopImage.setVisibility(View.VISIBLE);
-				}else{
-					backTopImage.setVisibility(View.GONE);
+				switch (event.getAction()) {
+					case MotionEvent.ACTION_DOWN:
+
+						break;
+					case MotionEvent.ACTION_MOVE:
+						int scrollY=parent_scroll_line.getScrollY();
+						int height=parent_scroll_line.getHeight();
+						int scrollViewMeasuredHeight=parent_scroll_line.getChildAt(0).getMeasuredHeight();
+						if(((scrollY+height)/2)<(scrollViewMeasuredHeight/2)){
+							backTopImage.setVisibility(View.GONE);
+						}else{
+							backTopImage.setVisibility(View.VISIBLE);
+						}
+						break;
+
+					default:
+						break;
 				}
 				return false;
 			}
@@ -259,6 +272,7 @@ public class ProductDetailActivity extends FragmentActivity {
 					@Override
 					public void run() {
 						parent_scroll_line.fullScroll(ScrollView.FOCUS_UP);
+						backTopImage.setVisibility(View.GONE);
 					}
 				});
 			}
@@ -356,11 +370,11 @@ public class ProductDetailActivity extends FragmentActivity {
 					}
 					shopBase=response.getShopBase();
 					if(shopBase.getShopLogo()!=null&&!"".equals(shopBase.getShopLogo())){
-						AppContext.getImageLoader().displayImage(ConstantJiao.aliUrl + shopBase.getShopLogo(), search_item_img);
+						AppContext.getImageLoader().displayImage(ConstantJiao.aliUrl + shopBase.getShopLogo()+"@61-1ci.png", search_item_img);
 					}
 					product_item_name.setText(shopBase.getShopName());
 					if(shopBase.getSlogan()!=null&&!"".equals(shopBase.getSlogan())){
-						product_item_mark.setText("店铺心情：" + shopBase.getSlogan());
+						product_item_mark.setText("店铺简介：" + shopBase.getSlogan());
 					}
 					info_num.setText(detail.getProInfoNum().toString());
 					collect_num.setText(detail.getProCollectNum().toString());

@@ -153,7 +153,7 @@ public class DynamicAdapter extends BaseAdapter {
             holder.dy_shop_name.setText("脏数据，未填写");
         }
         if(dy.getShopLogo()!=null&&!"".equals(dy.getShopLogo())){
-            imageLoader.displayImage(ConstantJiao.aliUrl + dy.getShopLogo() + "@61h_61w_0e", holder.dy_shop_logo, options);
+            imageLoader.displayImage(ConstantJiao.aliUrl + dy.getShopLogo() + "@61-1ci.png", holder.dy_shop_logo, options);
         }
         if(isCollect){
             holder.dy_coll_pro.setText(R.string.dynamic_has_collect_btn);
@@ -311,7 +311,7 @@ public class DynamicAdapter extends BaseAdapter {
      * @param position
      */
     private void initB(ViewHolder holder,Dynamic dy, final int position){
-        imageLoader.displayImage(ConstantJiao.aliUrl+dy.getActivityImg()+"@303h_623w_2e",holder.activity_img,options);
+        imageLoader.displayImage(ConstantJiao.aliUrl+dy.getActivityImg()+"@623w_303h_1e_1c_20-2ci.png",holder.activity_img,options);
         holder.activity_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

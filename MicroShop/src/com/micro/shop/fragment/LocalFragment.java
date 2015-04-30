@@ -46,6 +46,7 @@ import com.micro.shop.entity.AdEntity;
 import com.micro.shop.entity.LocalData;
 import com.micro.shop.entity.ProductImage;
 import com.micro.shop.net.HttpUtil;
+import com.micro.shop.util.BaiduUtil;
 import com.micro.shop.view.ActionHeadBar;
 import com.micro.shop.view.AdvertisementView;
 import com.micro.shop.view.AdvertisementView.OnImageClickListener;
@@ -220,7 +221,8 @@ public class LocalFragment extends Fragment {
 		option.setCoorType("bd09l1"); // 设置坐标类型
 		option.setScanSpan(500);//当不设此项，或者所设的整数值小于1000（ms）时，采用一次定位模式。
 		mLocClient.setLocOption(option);
-		mLocClient.start();
+		Log.e("the local is---->", "" + mLocClient.isStarted());
+		BaiduUtil.baiduMapStatus(mLocClient);
 	}
 
 	public void ajaxData(double latitude,double longitude, final String start,String number){
@@ -234,6 +236,7 @@ public class LocalFragment extends Fragment {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, List<LocalData> localList) {
 				setProgressBarVisible(false);
+				mPrScrollView.onRefreshComplete();
 				// ---------------------九宫格-------------------------
 				// ---------------------图集-------------------------
 
@@ -266,7 +269,6 @@ public class LocalFragment extends Fragment {
 					Toast.makeText(getActivity(), "没有更多内容了!", Toast.LENGTH_SHORT).show();
 					mPrScrollView.setMode(Mode.PULL_FROM_START);
 				}
-				mPrScrollView.onRefreshComplete();
 			}
 
 			@Override

@@ -31,7 +31,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/layout_item_bg"
                 android:numColumns="10"
-
+                android:verticalSpacing="1pt"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 >
             </GridView>
 
@@ -59,7 +62,7 @@
                         android:contentDescription="@null"
                         android:duplicateParentState="true"
                         android:scaleType="centerInside"
-                        android:src="@drawable/address_selects" />
+                        android:src="@drawable/rating_bar_unselected" />
 
                     <TextView
                         android:id="@+id/product_collect_titile"
@@ -506,7 +509,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="5dp"
                             android:textColor="#A8ADB1"
-                            android:text="店铺心情：未填写"
+                            android:text="店铺简介：未填写"
                             android:textSize="@dimen/front_14" />
                     </LinearLayout>
                 </LinearLayout>

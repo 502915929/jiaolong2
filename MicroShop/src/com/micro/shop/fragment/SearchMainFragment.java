@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.micro.shop.R;
+import com.micro.shop.entity.SearchResult;
 
 /**
  * 搜索主模块
@@ -34,6 +36,9 @@ public class SearchMainFragment extends Fragment {
 	private FragmentManager manager;
 	private List<Fragment> fragments;
 	private int index = 0;
+
+	SearchFragment searchFragment=new SearchFragment();
+	AdressFragment adressFragment=new AdressFragment();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,10 +64,10 @@ public class SearchMainFragment extends Fragment {
 
 	private void initData() {
 		fragments = new ArrayList<Fragment>();
-		fragments.add(new SearchFragment());
-		fragments.add(new AdressFragment());
+		fragments.add(searchFragment);
+		fragments.add(adressFragment);
 		manager = getChildFragmentManager();
-		changeChildFragment(index);
+		changeChildFragment(index,searchFragment.searchList);
 		mLlMap.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -76,23 +81,33 @@ public class SearchMainFragment extends Fragment {
 					mMapText.setText(R.string.search_item_map);
 					index = 0;
 				}
-				changeChildFragment(index);
+				changeChildFragment(index,searchFragment.searchList);
 			}
 		});
 	}
 
-	public void changeChildFragment(int index) {
+	public void changeChildFragment(int index,List<SearchResult> searchResults) {
+		Log.e("------------->",searchResults==null?"the list is null":searchResults.size()+"");
 		FragmentTransaction ft = manager.beginTransaction();
 		Fragment fragment = fragments.get(index);
-		if (fragment.isAdded())
+		if (fragment.isAdded()) {
 			fragment.onResume();
-		else
+		}else {
 			ft.add(R.id.search_main_content, fragment);
+		}
+
 		for (int i = 0; i < fragments.size(); i++) {
 			FragmentTransaction childFt = manager.beginTransaction();
 			Fragment child = fragments.get(i);
 			if (index == i) {
 				childFt.show(child);
+				if(i==1){
+					Log.e("开始标记坐标",""+searchResults.size());
+					adressFragment=(AdressFragment)child;
+					adressFragment.list=searchResults;
+					//adressFragment.drawMap(searchResults);
+					adressFragment.clearMarker();
+				}
 			} else {
 				childFt.hide(child);
 			}

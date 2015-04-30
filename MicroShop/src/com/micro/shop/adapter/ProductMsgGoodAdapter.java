@@ -54,7 +54,7 @@ public class ProductMsgGoodAdapter extends BaseAdapter {
             view=inflater.inflate(R.layout.layout_pro_good_well,parent,false);
         }
         ImageView  user_head_img =(ImageView)view.findViewById(R.id.user_head_img);
-        AppContext.getImageLoader().displayImage(ConstantJiao.aliUrl+client.getUserHeadImg()+"@112w_114h",user_head_img);
+        AppContext.getImageLoader().displayImage(ConstantJiao.aliUrl+client.getUserHeadImg()+"@50w_50h_1e_1c_5-2ci.png",user_head_img);
         return view;
     }
 }

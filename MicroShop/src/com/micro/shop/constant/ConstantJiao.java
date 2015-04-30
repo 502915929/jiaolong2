@@ -54,6 +54,10 @@ public interface ConstantJiao {
      */
     String localProListUrl=host_url+host+"dynamic/findLocalProList.htm";
 
+    /**
+     * 搜索数据接口（列表）
+     */
+    String searchShopListUrl=host_url+host+"dynamic/findSearchShopList.htm";
     //****************************************************************************************************************//
 
 
