@@ -5,7 +5,8 @@ package com.micro.shop.constant;
  */
 public interface ConstantJiao {
 
-    String host_url ="http://192.168.1.119:8080/";
+    //String host_url ="http://192.168.1.119:8080/";
+    String host_url ="http://192.168.1.108:8080/";
    //String host_url ="http://192.168.1.161:8080/";
   // String host_url ="http://192.168.1.169:8080/";
     String host="qqt_up/";

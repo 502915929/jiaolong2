@@ -50,6 +50,8 @@ public class SearchFragment extends Fragment {
 	private ProgressBar mPrBar;
 	private int page = 0;
 	private SearchAdapter adapter;
+	SearchMainFragment mainFragment;
+	boolean isFirst=true;
 
 	//************定位******************************************************************
 	/**
@@ -91,7 +93,6 @@ public class SearchFragment extends Fragment {
 			@Override
 			public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
 				if(page<=0){
-
 				}else{
 					page--;
 					//下拉
@@ -99,10 +100,7 @@ public class SearchFragment extends Fragment {
 						mPsvPage.setRefreshing();
 						mPrBar.setVisibility(View.GONE);
 						mPsvPage.setMode(Mode.PULL_FROM_END);
-						/*mPsvPage.onRefreshComplete();*/
-						Log.e("sf", "2");
 					}else{
-						Log.e("sf", "3");
 						mPsvPage.setRefreshing();
 						mPrBar.setVisibility(View.VISIBLE);
 						mPsvPage.setMode(Mode.BOTH);
@@ -142,7 +140,7 @@ public class SearchFragment extends Fragment {
 		mOtvTime = (OrderTextView) view.findViewById(R.id.search_otv_time);
 		mOtvFocus = (OrderTextView) view.findViewById(R.id.search_otv_focus);
 		mOtvPrice = (OrderTextView) view.findViewById(R.id.search_otv_price);
-		adapter = new SearchAdapter(getActivity(),searchList);
+		adapter = new SearchAdapter(getActivity(),searchList,mainFragment);
 		mPsvPage.setAdapter(adapter);
 	}
 
@@ -156,11 +154,9 @@ public class SearchFragment extends Fragment {
 		mOtvFocus.setOnTabClickListener(mFocusOrderClickListener);
 		//3点击事件
 		mOtvPrice.setOnTabClickListener(mPriceOrderClickListener);
-		//mPsvPage.setOnRefreshListener(mPageRefreshListener);
-		//mPsvPage.setMode(Mode.BOTH);
 	}
 
-	public void ajaxData(Double latitude,Double longitude,String start,String number){
+	public void ajaxData(final Double latitude,final Double longitude,String start,String number){
 		RequestParams params = new RequestParams();
 		params.put("latitude",latitude);
 		params.put("longitude",longitude);
@@ -176,9 +172,14 @@ public class SearchFragment extends Fragment {
 				Log.e("page is-->",page+"");
 				searchList=res;
 				adapter.list=searchList;
+				adapter.longitude=longitude;
+				adapter.latitude=latitude;
 				//mPsvPage.getRefreshableView().setSelection(page*6);
 				adapter.notifyDataSetChanged();
 				mPsvPage.onRefreshComplete();
+				if(page>1){
+					mainFragment.changeMapData(res);
+				}
 				if(res==null||res.size()<6){
 					Toast.makeText(getActivity(), "没有更多内容了!", Toast.LENGTH_SHORT).show();
 					mPsvPage.setMode(Mode.PULL_FROM_START);
@@ -234,6 +235,7 @@ public class SearchFragment extends Fragment {
 			// TODO 加载更多
 			mPsvPage.setRefreshing();
 			mPrBar.setVisibility(View.VISIBLE);
+			isFirst=false;
 			ajaxData(latitude, longitude, (page*6)+"", "6");
 
 		}

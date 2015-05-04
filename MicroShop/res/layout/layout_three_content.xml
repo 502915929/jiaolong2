@@ -22,7 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
-                android:background="@drawable/three_one"
                 android:contentDescription="@null"
                 android:scaleType="centerInside" />
 
@@ -39,7 +38,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="10dp"
-                    android:text="@string/product_news_price"
                     android:textColor="#FE9900"
                     android:textSize="@dimen/front_16" />
             </RelativeLayout>
@@ -62,7 +60,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:background="@drawable/three_two"
                     android:contentDescription="@null"
                     android:scaleType="centerInside" />
 
@@ -79,7 +76,6 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_margin="10dp"
-                        android:text="@string/product_news_price"
                         android:textColor="#FE9900"
                         android:textSize="@dimen/front_16" />
                 </RelativeLayout>
@@ -94,7 +90,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:background="@drawable/three_three"
                     android:contentDescription="@null"
                     android:scaleType="centerInside" />
 
@@ -111,7 +106,6 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_margin="10dp"
-                        android:text="@string/product_news_price"
                         android:textColor="#FE9900"
                         android:textSize="@dimen/front_16" />
                 </RelativeLayout>

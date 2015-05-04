@@ -7,7 +7,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="320dp" >
+        android:layout_height="320dp"
+        android:background="#FFFFFF"
+        >
 
         <RelativeLayout
             android:id="@+id/local_item_intro"

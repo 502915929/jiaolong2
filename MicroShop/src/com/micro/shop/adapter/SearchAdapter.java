@@ -1,15 +1,19 @@
 package com.micro.shop.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.micro.shop.R;
 import com.micro.shop.activity.ProductDetailActivity;
@@ -17,6 +21,8 @@ import com.micro.shop.activity.ShopMainActivity_;
 import com.micro.shop.config.AppContext;
 import com.micro.shop.constant.ConstantJiao;
 import com.micro.shop.entity.SearchResult;
+import com.micro.shop.form.RadioOnClick;
+import com.micro.shop.fragment.SearchMainFragment;
 import com.micro.shop.util.NumberFormatUtil;
 
 import java.util.List;
@@ -29,12 +35,17 @@ public class SearchAdapter extends BaseAdapter {
     public List<SearchResult> list;
     private LayoutInflater inflater;
 
-    public SearchAdapter(Context context,List<SearchResult> list) {
+    private String[] areas = new String[]{"驾车","公交", "步行"};
+    SearchMainFragment mainFragment;
+    public double latitude;
+    public double longitude;
+
+    public SearchAdapter(Context context,List<SearchResult> list,SearchMainFragment mainFragment) {
         super();
         this.context = context;
         this.list = list;
         this.inflater = LayoutInflater.from(this.context);
-
+        this.mainFragment=mainFragment;
     }
 
     @Override
@@ -80,7 +91,7 @@ public class SearchAdapter extends BaseAdapter {
             AppContext.getImageLoader().displayImage(ConstantJiao.aliUrl+shopLogo,holder.search_item_img);
         }
         holder.search_item_name.setText(rs.getShopName());
-        holder.search_item_mark.setText(rs.getHotNum()+"收藏");
+        holder.search_item_mark.setText(rs.getHotNum()+" 访问");
         String address=rs.getAddress();
         if(address==null||"".equals(address)){
             holder.search_table_address.setText("店铺地址未填写");
@@ -105,6 +116,14 @@ public class SearchAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 // 线路点击事件
+                //弹窗询问路线模式，驾车，公交，步行
+                RadioOnClick OnClick = new RadioOnClick(0,context,rs,mainFragment);
+                AlertDialog ad =new AlertDialog.Builder(context).setTitle("选择到店方式")
+                        .setSingleChoiceItems(areas,OnClick.getIndex(),OnClick).create();
+                OnClick.setRs(rs);
+                OnClick.setLatitude(latitude);
+                OnClick.setLongitude(longitude);
+                ad.show();
             }
         });
         holder.search_shop_mobile.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +131,14 @@ public class SearchAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 // 电话点击事件
+                String mobile =rs.getMobile();
+
+                if(mobile!=null&&!"".equals(mobile)){
+                    Intent intent =new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+mobile.trim()));
+                    context.startActivity(intent);
+                }else {
+                    Toast.makeText(context,"该店铺未提供电话号码",Toast.LENGTH_SHORT);
+                }
             }
         });
         holder.search_goto_shop.setOnClickListener(new View.OnClickListener() {

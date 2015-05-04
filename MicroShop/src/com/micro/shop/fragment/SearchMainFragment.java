@@ -23,9 +23,9 @@ import com.micro.shop.entity.SearchResult;
 
 /**
  * 搜索主模块
- * 
+ *
  * @author B.B.D
- * 
+ *
  */
 public class SearchMainFragment extends Fragment {
 	@SuppressWarnings("unused")
@@ -34,11 +34,11 @@ public class SearchMainFragment extends Fragment {
 	private TextView mMapText;
 	private ImageView mMapIcon;
 	private FragmentManager manager;
-	private List<Fragment> fragments;
+	List<Fragment> fragments;
 	private int index = 0;
 
-	SearchFragment searchFragment=new SearchFragment();
-	AdressFragment adressFragment=new AdressFragment();
+	public SearchFragment searchFragment;
+	public AdressFragment adressFragment;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class SearchMainFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
-			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+							 @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_search_main, container,
 				false);
 		initView(view);
@@ -64,6 +64,8 @@ public class SearchMainFragment extends Fragment {
 
 	private void initData() {
 		fragments = new ArrayList<Fragment>();
+		searchFragment=new SearchFragment();
+		adressFragment=new AdressFragment();
 		fragments.add(searchFragment);
 		fragments.add(adressFragment);
 		manager = getChildFragmentManager();
@@ -81,38 +83,92 @@ public class SearchMainFragment extends Fragment {
 					mMapText.setText(R.string.search_item_map);
 					index = 0;
 				}
-				changeChildFragment(index,searchFragment.searchList);
+				changeChildFragment(index, searchFragment.searchList);
 			}
 		});
 	}
 
+	public void changeMapData(List<SearchResult> searchResults){
+		adressFragment.changeMapData(searchResults);
+	}
+
+
 	public void changeChildFragment(int index,List<SearchResult> searchResults) {
-		Log.e("------------->",searchResults==null?"the list is null":searchResults.size()+"");
+		Log.e("change------>",searchResults==null?"the list is null":searchResults.size()+"");
+		int i=0;
 		FragmentTransaction ft = manager.beginTransaction();
 		Fragment fragment = fragments.get(index);
+		FragmentTransaction childFt;
+		Fragment child;
 		if (fragment.isAdded()) {
-			fragment.onResume();
+			if(fragment instanceof  AdressFragment){
+				adressFragment=(AdressFragment)fragment;
+				adressFragment.onResume();
+			}else{
+				fragment.onResume();
+			}
 		}else {
 			ft.add(R.id.search_main_content, fragment);
 		}
 
-		for (int i = 0; i < fragments.size(); i++) {
-			FragmentTransaction childFt = manager.beginTransaction();
-			Fragment child = fragments.get(i);
+		for (; i < fragments.size(); i++) {
+			childFt = manager.beginTransaction();
+			child = fragments.get(i);
 			if (index == i) {
-				childFt.show(child);
-				if(i==1){
-					Log.e("开始标记坐标",""+searchResults.size());
-					adressFragment=(AdressFragment)child;
+				if(index==1){
+					Log.e("开始标记坐标", "" + searchResults.size());
 					adressFragment.list=searchResults;
-					//adressFragment.drawMap(searchResults);
 					adressFragment.clearMarker();
+					adressFragment.clearRouteOverlay();
+					getChildFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+						@Override
+						public void onBackStackChanged() {
+							Log.e("where","where");
+						}
+					});
 				}
+				childFt.show(child);
+
 			} else {
 				childFt.hide(child);
 			}
 			childFt.commit();
 		}
+
 		ft.commit();
 	}
+
+	public void changeWayFragment(int index) {
+		mMapIcon.setBackgroundResource(R.drawable.serach_list);
+		mMapText.setText(R.string.search_list);
+		FragmentTransaction ft = manager.beginTransaction();
+		Fragment fragment = fragments.get(index);
+		this.index=1;
+		int i=0;
+		FragmentTransaction childFt;
+		Fragment child;
+		for (; i < fragments.size(); i++) {
+			childFt = manager.beginTransaction();
+			child = fragments.get(i);
+			if (index == i) {
+				childFt.show(child);
+			} else {
+				childFt.hide(child);
+			}
+			childFt.commit();
+		}
+		if (fragment.isAdded()) {
+			if(fragment instanceof AdressFragment){
+				AdressFragment adressFragment=(AdressFragment)fragment;
+				adressFragment.onResume();
+			}else{
+				fragment.onResume();
+			}
+		}else {
+			ft.add(R.id.search_main_content, fragment);
+		}
+		ft.commit();
+	}
+
+
 }
