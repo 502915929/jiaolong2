@@ -66,10 +66,14 @@ public class SearchMainFragment extends Fragment {
 		fragments = new ArrayList<Fragment>();
 		searchFragment=new SearchFragment();
 		adressFragment=new AdressFragment();
+		searchFragment.mainFragment=this;
 		fragments.add(searchFragment);
 		fragments.add(adressFragment);
 		manager = getChildFragmentManager();
-		changeChildFragment(index,searchFragment.searchList);
+		FragmentTransaction ft = manager.beginTransaction();
+		ft.add(R.id.search_main_content, searchFragment);
+		ft.show(searchFragment);
+		ft.commit();
 		mLlMap.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -94,48 +98,37 @@ public class SearchMainFragment extends Fragment {
 
 
 	public void changeChildFragment(int index,List<SearchResult> searchResults) {
-		Log.e("change------>",searchResults==null?"the list is null":searchResults.size()+"");
-		int i=0;
 		FragmentTransaction ft = manager.beginTransaction();
-		Fragment fragment = fragments.get(index);
-		FragmentTransaction childFt;
-		Fragment child;
-		if (fragment.isAdded()) {
-			if(fragment instanceof  AdressFragment){
-				adressFragment=(AdressFragment)fragment;
-				adressFragment.onResume();
+		if(index==0){//列表
+			if(searchFragment.isAdded()){
+				adressFragment.onPause();
+				searchFragment.onResume();
 			}else{
-				fragment.onResume();
+				ft.add(R.id.search_main_content, searchFragment);
 			}
-		}else {
-			ft.add(R.id.search_main_content, fragment);
-		}
-
-		for (; i < fragments.size(); i++) {
-			childFt = manager.beginTransaction();
-			child = fragments.get(i);
-			if (index == i) {
-				if(index==1){
-					Log.e("开始标记坐标", "" + searchResults.size());
-					adressFragment.list=searchResults;
-					adressFragment.clearMarker();
-					adressFragment.clearRouteOverlay();
-					getChildFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-						@Override
-						public void onBackStackChanged() {
-							Log.e("where","where");
-						}
-					});
-				}
-				childFt.show(child);
-
-			} else {
-				childFt.hide(child);
+			ft.show(searchFragment);
+			ft.hide(adressFragment);
+		}else{//地图
+			if(adressFragment.isAdded()){
+				adressFragment.onResume();
+				searchFragment.onPause();
+			}else{
+				ft.add(R.id.search_main_content, adressFragment);
 			}
-			childFt.commit();
+			adressFragment.list=searchResults;
+			ft.show(adressFragment);
+			ft.hide(searchFragment);
 		}
-
 		ft.commit();
+		if(adressFragment.isAdded()&&adressFragment.isHidden()){
+			FragmentTransaction change = manager.beginTransaction();
+			adressFragment.baiduMap.clear();
+			adressFragment.clearRouteOverlay();
+			adressFragment.clearMarker();
+			changeMapData(searchResults);
+			adressFragment.mMapView.refreshDrawableState();
+			change.commit();
+		}
 	}
 
 	public void changeWayFragment(int index) {
@@ -160,6 +153,10 @@ public class SearchMainFragment extends Fragment {
 		if (fragment.isAdded()) {
 			if(fragment instanceof AdressFragment){
 				AdressFragment adressFragment=(AdressFragment)fragment;
+				adressFragment.list=null;
+				adressFragment.viewPager.removeAllViews();
+				adressFragment.clearMarker();
+				adressFragment.clearRouteOverlay();
 				adressFragment.onResume();
 			}else{
 				fragment.onResume();

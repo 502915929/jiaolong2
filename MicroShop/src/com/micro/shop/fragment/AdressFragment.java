@@ -65,7 +65,7 @@ import java.util.List;
  *
  */
 public class AdressFragment extends Fragment implements OnGetRoutePlanResultListener,BaiduMap.OnMapClickListener {
-	private MapView mMapView = null;
+	public MapView mMapView = null;
 	private TextView mProductDetail;
 	private LinearLayout mRouteButton, mPhoneButton, mDianButton;
 
@@ -117,22 +117,19 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 
 	private String[] areas = new String[]{"驾车","公交", "步行"};
 	List<Marker> markerList=new ArrayList<Marker>();
+	List<Button> buttonList=new ArrayList<Button>();
 
 	//++++++++++++++viewAdapter+++++++++++++++++++++
-	private AutoHeightViewPager viewPager;
+	public AutoHeightViewPager viewPager;
 	private List<Fragment> fragments;
 	AddressBottomFragment bottomFragment;
-	PagerAdapter pagerAdapter;
+	public PagerAdapter pagerAdapter;
 	//++++++++++++++viewAdapter+++++++++++++++++++++
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 							 @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_address, container,false);
-		/*Bundle bundle=getArguments();
-		if(bundle!=null&&bundle.containsKey("list")){
-			this.list=(ArrayList)bundle.getParcelableArrayList("list");
-		}*/
 		initView(view);
 		drawMap();
 		return view;
@@ -154,9 +151,6 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 		bottomFragment=new AddressBottomFragment();
 		fragments.add(bottomFragment);
 
-
-		button = new Button(getActivity());
-		button.setBackgroundResource(R.drawable.location_shop_green);
 	}
 
 	public void initViewPager() {
@@ -170,6 +164,7 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 			@Override
 			public void onPageSelected(int i) {
 				Marker marker=markerList.get(i);
+				Log.e("the viewPager value",marker.getTitle());
 				LatLng latLng= new LatLng(marker.getPosition().latitude,marker.getPosition().longitude);
 				clickMarker(marker);
 				u = MapStatusUpdateFactory.newLatLng(latLng);
@@ -189,8 +184,10 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	 *
 	 */
 	public void drawMap(){
-		initViewPager();
+		/*baiduMap.clear();
+		mMapView.invalidate();*/
 		if(list!=null){
+			initViewPager();
 			int i=0;
 			SearchResult result;
 			for (;i<list.size();i++){
@@ -220,6 +217,8 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	 */
 	public void clickMarker(final Marker marker){
 		Log.e(marker.getTitle(), marker.getPosition().latitude + "," + marker.getPosition().longitude);
+		button = new Button(getActivity());
+		button.setBackgroundResource(R.drawable.location_shop_green);
 		button.setText(marker.getTitle());
 		for (Marker m : markerList) {
 			if (m.getIcon()==bitmap) {
@@ -235,6 +234,7 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 				getActivity().startActivity(intent);
 			}
 		});
+		buttonList.add(button);
 		mInfoWindow = new InfoWindow(button, marker.getPosition(), -47);
 		baiduMap.showInfoWindow(mInfoWindow);
 	}
@@ -271,15 +271,18 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	public void showWay(int goType,SearchResult result,Double latitude,Double longitude){
 		this.latitude=latitude;
 		this.longitude=longitude;
-		Log.e("查询路线", latitude +","+longitude+ ">>>>"+result.getLatitude()+","+result.getLongitude());
+		Log.e("查询路线", latitude + "," + longitude + ">>>>" + result.getLatitude() + "," + result.getLongitude());
 
 		//如果已经规划过路线，则清楚原路线
 		clearRouteOverlay();
 		//如果地图上有覆盖物对象，清除marker对象
 		clearMarker();
-
+		//baiduMap.clear();
+		routeOverlay=null;
+		//初始化搜索
 		mSearch = RoutePlanSearch.newInstance();
 		mSearch.setOnGetRoutePlanResultListener(this);
+
 		//设置起终点信息，对于tranist search 来说，城市名无意义
 		LatLng ll = new LatLng(latitude,longitude);
 		PlanNode stNode = PlanNode.withLocation(ll);
@@ -311,6 +314,14 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 			for(Marker m:markerList){
 				m.remove();
 			}
+			for(Button b:buttonList){
+				b.setVisibility(View.GONE);
+				b.setOnClickListener(null);
+			}
+			markerList.clear();
+			buttonList.clear();
+			mMapView.removeView(button);
+			//mMapView.removeAllViews();
 		}
 	}
 
@@ -320,13 +331,8 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	public void clearRouteOverlay(){
 		if(routeOverlay!=null){
 			routeOverlay.removeFromMap();
+			mMapView.removeView(button);
 		}
-	}
-
-
-	public void restartAdressFragment(List<SearchResult> list){
-		this.list=list;
-		drawMap();
 	}
 
 
@@ -354,6 +360,8 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	 */
 	@Override
 	public void onGetWalkingRouteResult(WalkingRouteResult result) {
+		/*baiduMap.clear();
+		mMapView.invalidate();*/
 		Log.e("进店结果", result.error + "");
 		if (result == null || result.error != com.baidu.mapapi.search.core.SearchResult.ERRORNO.NO_ERROR) {
 			Toast.makeText(getActivity(), "抱歉，未找到结果,您可以尝试选择其他路线方式", Toast.LENGTH_SHORT).show();
@@ -383,6 +391,8 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	@Override
 	public void onGetTransitRouteResult(TransitRouteResult result) {
 		Log.e("======", "经度" + latitude + "纬度" + longitude);
+		/*baiduMap.clear();
+		mMapView.invalidate();*/
 		MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(new LatLng(latitude,longitude));
 		baiduMap.animateMapStatus(u);
 		if (result == null || result.error != com.baidu.mapapi.search.core.SearchResult.ERRORNO.NO_ERROR) {
@@ -411,6 +421,8 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	 */
 	@Override
 	public void onGetDrivingRouteResult(DrivingRouteResult result) {
+		/*baiduMap.clear();
+		mMapView.invalidate();*/
 		if (result == null || result.error != com.baidu.mapapi.search.core.SearchResult.ERRORNO.NO_ERROR) {
 			Toast.makeText(getActivity(), "抱歉，未找到结果，您可以尝试选择其他路线方式", Toast.LENGTH_SHORT).show();
 		}
@@ -439,7 +451,7 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 
 	@Override
 	public boolean onMapPoiClick(MapPoi mapPoi) {
-		return true;
+		return false;
 	}
 
 
@@ -549,18 +561,20 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 		@Override
 		public Fragment getItem(int arg0) {
 			Fragment fragment = new AddressBottomFragment();
-			Bundle bundle=new Bundle();
-			SearchResult re =list.get(arg0);
-			bundle.putString("shopName",re.getShopName());
-			bundle.putString("address",re.getAddress());
-			bundle.putDouble("range", re.getRange());
-			bundle.putInt("hotNum", re.getHotNum());
-			bundle.putString("slogan", re.getShopSlogan());
-			bundle.putDouble("latitude", re.getLatitude());
-			bundle.putDouble("longitude",re.getLongitude());
-			bundle.putString("shopLogo",re.getShopLogo());
-			bundle.putString("shopCode",re.getShopCode());
-			fragment.setArguments(bundle);
+			if(list!=null) {
+				Bundle bundle = new Bundle();
+				SearchResult re = list.get(arg0);
+				bundle.putString("shopName", re.getShopName());
+				bundle.putString("address", re.getAddress());
+				bundle.putDouble("range", re.getRange());
+				bundle.putInt("hotNum", re.getHotNum());
+				bundle.putString("slogan", re.getShopSlogan());
+				bundle.putDouble("latitude", re.getLatitude());
+				bundle.putDouble("longitude", re.getLongitude());
+				bundle.putString("shopLogo", re.getShopLogo());
+				bundle.putString("shopCode", re.getShopCode());
+				fragment.setArguments(bundle);
+			}
 			return fragment;
 		}
 

@@ -2,7 +2,6 @@ package com.micro.shop.fragment;
 
 import java.util.List;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -27,7 +25,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.micro.shop.R;
-import com.micro.shop.activity.ShopMainActivity_;
 import com.micro.shop.adapter.SearchAdapter;
 import com.micro.shop.constant.ConstantJiao;
 import com.micro.shop.constant.Order;
@@ -177,9 +174,6 @@ public class SearchFragment extends Fragment {
 				//mPsvPage.getRefreshableView().setSelection(page*6);
 				adapter.notifyDataSetChanged();
 				mPsvPage.onRefreshComplete();
-				if(page>1){
-					mainFragment.changeMapData(res);
-				}
 				if(res==null||res.size()<6){
 					Toast.makeText(getActivity(), "没有更多内容了!", Toast.LENGTH_SHORT).show();
 					mPsvPage.setMode(Mode.PULL_FROM_START);
