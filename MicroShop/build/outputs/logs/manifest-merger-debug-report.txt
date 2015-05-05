@@ -149,74 +149,86 @@ MERGED from Î¢µêÔ´Âë:PullToReflesh_Library:unspecified:9:5
 	android:name
 		ADDED from AndroidManifest.xml:49:9
 meta-data#com.baidu.lbsapi.API_KEY
-ADDED from AndroidManifest.xml:53:9
+ADDED from AndroidManifest.xml:55:9
 	android:value
-		ADDED from AndroidManifest.xml:55:13
+		ADDED from AndroidManifest.xml:57:13
 	android:name
-		ADDED from AndroidManifest.xml:54:13
+		ADDED from AndroidManifest.xml:56:13
 service#com.baidu.location.f
-ADDED from AndroidManifest.xml:57:9
+ADDED from AndroidManifest.xml:60:9
 	android:enabled
-		ADDED from AndroidManifest.xml:59:13
+		ADDED from AndroidManifest.xml:62:13
 	android:process
-		ADDED from AndroidManifest.xml:60:13
+		ADDED from AndroidManifest.xml:63:13
 	android:name
-		ADDED from AndroidManifest.xml:58:13
+		ADDED from AndroidManifest.xml:61:13
+meta-data#DB_NAME
+ADDED from AndroidManifest.xml:67:9
+	android:value
+		ADDED from AndroidManifest.xml:67:43
+	android:name
+		ADDED from AndroidManifest.xml:67:20
+meta-data#DB_VERSION
+ADDED from AndroidManifest.xml:68:9
+	android:value
+		ADDED from AndroidManifest.xml:68:46
+	android:name
+		ADDED from AndroidManifest.xml:68:20
 activity#com.micro.shop.activity.MainActivity
-ADDED from AndroidManifest.xml:63:9
+ADDED from AndroidManifest.xml:70:9
 	android:label
-		ADDED from AndroidManifest.xml:65:13
+		ADDED from AndroidManifest.xml:72:13
 	android:name
-		ADDED from AndroidManifest.xml:64:13
+		ADDED from AndroidManifest.xml:71:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:66:13
+ADDED from AndroidManifest.xml:73:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:67:17
+ADDED from AndroidManifest.xml:74:17
 	android:name
-		ADDED from AndroidManifest.xml:67:25
+		ADDED from AndroidManifest.xml:74:25
 category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:69:17
+ADDED from AndroidManifest.xml:76:17
 	android:name
-		ADDED from AndroidManifest.xml:69:27
+		ADDED from AndroidManifest.xml:76:27
 activity#com.micro.shop.activity.LoginActivity
-ADDED from AndroidManifest.xml:72:9
+ADDED from AndroidManifest.xml:79:9
 	android:label
-		ADDED from AndroidManifest.xml:74:13
-	android:name
-		ADDED from AndroidManifest.xml:73:13
-activity#com.micro.shop.activity.ProductDetailActivity
-ADDED from AndroidManifest.xml:76:9
-	android:label
-		ADDED from AndroidManifest.xml:78:13
-	android:name
-		ADDED from AndroidManifest.xml:77:13
-activity#com.micro.shop.activity.ShopMainActivity_
-ADDED from AndroidManifest.xml:80:9
-	android:label
-		ADDED from AndroidManifest.xml:82:13
-	android:name
 		ADDED from AndroidManifest.xml:81:13
-activity#com.micro.shop.activity.RegActivity
-ADDED from AndroidManifest.xml:84:9
-	android:label
-		ADDED from AndroidManifest.xml:86:13
 	android:name
+		ADDED from AndroidManifest.xml:80:13
+activity#com.micro.shop.activity.ProductDetailActivity
+ADDED from AndroidManifest.xml:83:9
+	android:label
 		ADDED from AndroidManifest.xml:85:13
-activity#com.micro.shop.activity.VerificationForRegActivity
-ADDED from AndroidManifest.xml:88:9
-	android:label
-		ADDED from AndroidManifest.xml:90:13
 	android:name
+		ADDED from AndroidManifest.xml:84:13
+activity#com.micro.shop.activity.ShopMainActivity_
+ADDED from AndroidManifest.xml:87:9
+	android:label
 		ADDED from AndroidManifest.xml:89:13
-activity#com.micro.shop.activity.ProductImageDetailActivity
-ADDED from AndroidManifest.xml:92:9
-	android:label
-		ADDED from AndroidManifest.xml:94:13
 	android:name
+		ADDED from AndroidManifest.xml:88:13
+activity#com.micro.shop.activity.RegActivity
+ADDED from AndroidManifest.xml:91:9
+	android:label
 		ADDED from AndroidManifest.xml:93:13
-activity#com.micro.shop.activity.ActivityMsgActivity
-ADDED from AndroidManifest.xml:96:9
-	android:label
-		ADDED from AndroidManifest.xml:98:13
 	android:name
+		ADDED from AndroidManifest.xml:92:13
+activity#com.micro.shop.activity.VerificationForRegActivity
+ADDED from AndroidManifest.xml:95:9
+	android:label
 		ADDED from AndroidManifest.xml:97:13
+	android:name
+		ADDED from AndroidManifest.xml:96:13
+activity#com.micro.shop.activity.ProductImageDetailActivity
+ADDED from AndroidManifest.xml:99:9
+	android:label
+		ADDED from AndroidManifest.xml:101:13
+	android:name
+		ADDED from AndroidManifest.xml:100:13
+activity#com.micro.shop.activity.ActivityMsgActivity
+ADDED from AndroidManifest.xml:103:9
+	android:label
+		ADDED from AndroidManifest.xml:105:13
+	android:name
+		ADDED from AndroidManifest.xml:104:13

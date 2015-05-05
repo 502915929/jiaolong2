@@ -2,12 +2,8 @@ package com.micro.shop.form;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.micro.shop.entity.SearchResult;
-import com.micro.shop.fragment.AdressFragment;
 import com.micro.shop.fragment.SearchMainFragment;
 
 /**

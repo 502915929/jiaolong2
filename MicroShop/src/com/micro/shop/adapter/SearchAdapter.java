@@ -10,13 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.micro.shop.R;
-import com.micro.shop.activity.ProductDetailActivity;
 import com.micro.shop.activity.ShopMainActivity_;
 import com.micro.shop.config.AppContext;
 import com.micro.shop.constant.ConstantJiao;

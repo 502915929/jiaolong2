@@ -19,9 +19,7 @@ import android.widget.TextView;
 
 import com.micro.shop.R;
 import com.micro.shop.constant.ConstantJiao;
-import com.micro.shop.entity.AdEntity;
 import com.micro.shop.entity.LocalData;
-import com.micro.shop.entity.ProductImage;
 import com.micro.shop.fragment.FixRatioImageFragment;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -185,7 +183,7 @@ public class AdvertisementView extends RelativeLayout {
 		}
 	}
 
-	public void removeImageItem(AdEntity entity) {
+	public void removeImageItem(LocalData entity) {
 		if (mData != null) {
 			mData.remove(entity);
 		}

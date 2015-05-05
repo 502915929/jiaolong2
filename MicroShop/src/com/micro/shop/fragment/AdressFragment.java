@@ -14,15 +14,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
@@ -66,11 +59,8 @@ import java.util.List;
  */
 public class AdressFragment extends Fragment implements OnGetRoutePlanResultListener,BaiduMap.OnMapClickListener {
 	public MapView mMapView = null;
-	private TextView mProductDetail;
-	private LinearLayout mRouteButton, mPhoneButton, mDianButton;
-
-	public FragmentManager fm;
-
+	//private TextView mProductDetail;
+	//private LinearLayout mRouteButton, mPhoneButton, mDianButton;
 
 
 	//----------------百度地图相关-----------//
@@ -90,20 +80,6 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	//---------------------------------//
 
 
-	//=======================定位相关=======================
-	/**
-	 * 定位的客户端
-	 */
-	private LocationClient mLocClient;
-	public MyLocationListenner myListener = new MyLocationListenner();
-
-	/**
-	 * 定位选项
-	 */
-	LocationClientOption options;
-	boolean isFirstLoc = true;// 是否首次定位
-	//=====================================================
-
 
 	//*******************************************搜索相关***********************************************
 	RoutePlanSearch mSearch = null;    // 搜索模块，也可去掉地图模块独立使用
@@ -112,12 +88,11 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	RouteLine route = null;
 	OverlayManager routeOverlay = null;
 	boolean useDefaultIcon = false;
-	private TextView popupText = null;//泡泡view
 	//**************************************************************************************************
 
 	private String[] areas = new String[]{"驾车","公交", "步行"};
-	List<Marker> markerList=new ArrayList<Marker>();
-	List<Button> buttonList=new ArrayList<Button>();
+	List<Marker> markerList=new ArrayList<>();
+	List<Button> buttonList=new ArrayList<>();
 
 	//++++++++++++++viewAdapter+++++++++++++++++++++
 	public AutoHeightViewPager viewPager;
@@ -138,16 +113,16 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	private void initView(View view) {
 		mMapView = (MapView) view.findViewById(R.id.bmapView);
 		baiduMap=mMapView.getMap();
-		mRouteButton = (LinearLayout) view.findViewById(R.id.search_item_route);
+		/*mRouteButton = (LinearLayout) view.findViewById(R.id.search_item_route);
 		mPhoneButton = (LinearLayout) view.findViewById(R.id.search_item_tel);
-		mDianButton = (LinearLayout) view.findViewById(R.id.search_item_shop);
+		mDianButton = (LinearLayout) view.findViewById(R.id.search_item_shop);*/
 		//mProductDetail = (TextView) view.findViewById(R.id.address_detail);
 		mMapView.showZoomControls(false);//是否展示地图缩放按键
 		//mMapView.showScaleControl(false);//是否展示地图缩放级别
 
 		//初始化viewPager
 		viewPager=(AutoHeightViewPager)view.findViewById(R.id.address_bottom);
-		fragments = new ArrayList<Fragment>();
+		fragments = new ArrayList<>();
 		bottomFragment=new AddressBottomFragment();
 		fragments.add(bottomFragment);
 
@@ -360,9 +335,6 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	 */
 	@Override
 	public void onGetWalkingRouteResult(WalkingRouteResult result) {
-		/*baiduMap.clear();
-		mMapView.invalidate();*/
-		Log.e("进店结果", result.error + "");
 		if (result == null || result.error != com.baidu.mapapi.search.core.SearchResult.ERRORNO.NO_ERROR) {
 			Toast.makeText(getActivity(), "抱歉，未找到结果,您可以尝试选择其他路线方式", Toast.LENGTH_SHORT).show();
 		}
@@ -390,9 +362,6 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	 */
 	@Override
 	public void onGetTransitRouteResult(TransitRouteResult result) {
-		Log.e("======", "经度" + latitude + "纬度" + longitude);
-		/*baiduMap.clear();
-		mMapView.invalidate();*/
 		MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(new LatLng(latitude,longitude));
 		baiduMap.animateMapStatus(u);
 		if (result == null || result.error != com.baidu.mapapi.search.core.SearchResult.ERRORNO.NO_ERROR) {
@@ -421,8 +390,6 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 	 */
 	@Override
 	public void onGetDrivingRouteResult(DrivingRouteResult result) {
-		/*baiduMap.clear();
-		mMapView.invalidate();*/
 		if (result == null || result.error != com.baidu.mapapi.search.core.SearchResult.ERRORNO.NO_ERROR) {
 			Toast.makeText(getActivity(), "抱歉，未找到结果，您可以尝试选择其他路线方式", Toast.LENGTH_SHORT).show();
 		}
@@ -524,29 +491,6 @@ public class AdressFragment extends Fragment implements OnGetRoutePlanResultList
 			}
 			return null;
 		}
-	}
-
-
-	/**
-	 * 定位SDK监听函数
-	 */
-	public class MyLocationListenner implements BDLocationListener {
-
-		@Override
-		public void onReceiveLocation(BDLocation location) {
-			// map view 销毁后不在处理新接收的位置
-			if (location == null ) {
-				return;
-			}
-			latitude=location.getLatitude();
-			longitude = location.getLongitude();
-			Log.e("定位坐标", "纬度=" + latitude + " 经度=" + longitude);
-		}
-
-		public void onReceivePoi(BDLocation poiLocation) {
-			Log.e("the location is------>", poiLocation.getProvince() + poiLocation.getCity() + poiLocation.getDistrict() + poiLocation.getStreet());
-		}
-
 	}
 
 

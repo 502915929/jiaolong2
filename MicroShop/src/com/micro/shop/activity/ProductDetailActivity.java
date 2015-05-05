@@ -292,7 +292,7 @@ public class ProductDetailActivity extends FragmentActivity {
 			Log.e("coming in ajaxData","115-->"+productCode);
 			RequestParams params = new RequestParams();
 			params.put("productCode",productCode);
-			params.put("userCode", AppContext.userCode);
+			params.put("userCode", AppContext.getUserCode());
 			HttpUtil.getClient().post(ConstantJiao.showProDetailUrl, params, new BaseJsonHttpResponseHandler<ProductDetail>() {
 				@Override
 				public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, ProductDetail response) {

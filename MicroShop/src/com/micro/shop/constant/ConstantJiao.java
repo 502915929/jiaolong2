@@ -5,8 +5,8 @@ package com.micro.shop.constant;
  */
 public interface ConstantJiao {
 
-    //String host_url ="http://192.168.1.119:8080/";
-    String host_url ="http://192.168.1.108:8080/";
+    String host_url ="http://192.168.1.119:8080/";
+   // String host_url ="http://192.168.1.108:8080/";
    //String host_url ="http://192.168.1.161:8080/";
   // String host_url ="http://192.168.1.169:8080/";
     String host="qqt_up/";
@@ -59,6 +59,11 @@ public interface ConstantJiao {
      * 搜索数据接口（列表）
      */
     String searchShopListUrl=host_url+host+"dynamic/findSearchShopList.htm";
+
+    /**
+     * 用户首次打开app上传设备信息接口
+     */
+    String fristOpenAppUrl=host_url+host+"dynamic/saveDeviceMsg.htm";
     //****************************************************************************************************************//
 
 

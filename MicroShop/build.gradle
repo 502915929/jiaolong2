@@ -31,7 +31,6 @@ dependencies {
     compile project(':PullToReflesh_Library')
     compile files('libs/baidumapapi_v3_3_0.jar')
     compile files('libs/locSDK_5.0.jar')
-    compile files('libs/afinal.jar')
     compile files('libs/gson-2.0.jar')
     compile files('libs/mframework.jar')
     compile 'com.loopj.android:android-async-http:1.4.6'
@@ -39,6 +38,8 @@ dependencies {
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     //compile 'com.sothree.slidinguppanel:library:3.0.0'
+    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+
 }
 
 apt {

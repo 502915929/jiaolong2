@@ -1,15 +1,18 @@
 package com.micro.shop.entity;
 
-import net.tsz.afinal.annotation.sqlite.Id;
-import net.tsz.afinal.annotation.sqlite.Table;
+
+import java.io.Serializable;
 
 /**
  * Created by 95 on 2015/4/7.
  */
-@Table(name = "client_user")
-public class ClientUser {
+public class ClientUser implements Serializable{
 
-    @Id
+    /**
+     *
+     */
+    private static final long serialVersionUID = -5624402112496660402L;
+
     private String  baseId;
 
     public String getBaseId() {

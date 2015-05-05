@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.micro.shop.R;
 import com.micro.shop.constant.ConstantJiao;
-import com.micro.shop.entity.AdEntity;
 import com.micro.shop.entity.ProductImage;
 import com.micro.shop.fragment.FixRatioImageFragment;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -187,7 +186,7 @@ public class ProductDetailView  extends RelativeLayout {
         }
     }
 
-    public void removeImageItem(AdEntity entity) {
+    public void removeImageItem(ProductImage entity) {
         if (mData != null) {
             mData.remove(entity);
         }

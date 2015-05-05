@@ -1,22 +1,14 @@
 package com.micro.shop.fragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Handler.Callback;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -26,11 +18,6 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.MapStatusUpdate;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
-import com.baidu.mapapi.map.MyLocationData;
-import com.baidu.mapapi.model.LatLng;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -39,20 +26,15 @@ import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.micro.shop.R;
-import com.micro.shop.activity.ProductDetailActivity;
 import com.micro.shop.adapter.LocalFragmentAdapter;
 import com.micro.shop.constant.ConstantJiao;
-import com.micro.shop.entity.AdEntity;
 import com.micro.shop.entity.LocalData;
-import com.micro.shop.entity.ProductImage;
 import com.micro.shop.net.HttpUtil;
 import com.micro.shop.util.BaiduUtil;
 import com.micro.shop.view.ActionHeadBar;
 import com.micro.shop.view.AdvertisementView;
-import com.micro.shop.view.AdvertisementView.OnImageClickListener;
 import com.micro.shop.view.InnerGridView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.apache.http.Header;
 
@@ -237,26 +219,6 @@ public class LocalFragment extends Fragment {
 			public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, List<LocalData> localList) {
 				setProgressBarVisible(false);
 				mPrScrollView.onRefreshComplete();
-				// ---------------------九宫格-------------------------
-				// ---------------------图集-------------------------
-
-				/*if (adView.getDataCount() == 0) {
-					adView.setData(getActivity(), localList,
-							AdvertisementView.STYLE_POINER_INDICATOR);
-				}
-				adView.setOnImageClickListener(new OnImageClickListener() {
-
-					@Override
-					public void onDoubleClickItem(int position) {
-
-					}
-
-					@Override
-					public void onClickItem(int position) {
-						// 点击图集的图片进入下一个模块
-					}
-				});*/
-
 				if(start.equals("0")){
 					myList=localList;
 				}else{
@@ -301,9 +263,6 @@ public class LocalFragment extends Fragment {
 			ajaxData(latitude, longitude, "0", "6");
 		}
 
-		public void onReceivePoi(BDLocation poiLocation) {
-			Log.e("the location is------>", poiLocation.getProvince() + poiLocation.getCity() + poiLocation.getDistrict() + poiLocation.getStreet());
-		}
 	}
 
 
