@@ -20,6 +20,7 @@ import com.micro.shop.activity.ActivityMsgActivity;
 import com.micro.shop.activity.ProductDetailActivity;
 import com.micro.shop.activity.ShopMainActivity_;
 import com.micro.shop.constant.ConstantJiao;
+import com.micro.shop.constant.ShareConstant;
 import com.micro.shop.entity.Dynamic;
 import com.micro.shop.net.HttpUtil;
 import com.micro.shop.util.NumberFormatUtil;
@@ -30,6 +31,9 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 
 import java.util.List;
+
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * Created by 95 on 2015/4/16.
@@ -49,7 +53,7 @@ public class DynamicAdapter extends BaseAdapter {
         inflater=LayoutInflater.from(context);
         this.context=context;
         imageLoader= ImageLoader.getInstance();
-        /*ShareSDK.initSDK(context);*/
+        ShareSDK.initSDK(context);
     }
 
     public DynamicAdapter(Context context, List<Dynamic> list) {
@@ -282,24 +286,24 @@ public class DynamicAdapter extends BaseAdapter {
         });*/
 
         //点击分享调用分享
-        /*fenxiang.setOnClickListener(new View.OnClickListener() {
+        holder.fenxiang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e("---->", "店铺分享start" + position);
                 Dynamic dynamic=dynamicList.get(position);
                 OnekeyShare share = new OnekeyShare();
                 share.setTitle("优商圈--你身边的平台");
-                share.setText("还在苦苦的朋友圈发广告？还在苦恼您的店铺商品没有人知道？快来加入免费平台http://192.168.1.169:8080/qqt_up/detailPage/selectDetailProduct.htm?code=402881294c8ecc05014c8ed04e890000&shopCode=402881294c8e30b3014c8e374ea60000");
-                share.setTitleUrl("http://192.168.1.169:8080/qqt_up/detailPage/selectDetailProduct.htm?code=402881294c8ecc05014c8ed04e890000&shopCode=402881294c8e30b3014c8e374ea60000");
-                share.setImageUrl("http://125.oss-cn-beijing.aliyuncs.com/c5ae76c9d20c4459a1024242d4191e10.jpg");
+                share.setText(ShareConstant.dynamic_share_text+"WWW.baidu.com");
+                share.setTitleUrl("WWW.baidu.com");
+                share.setImageUrl(ConstantJiao.aliUrl+dynamic.getProductImage());
 
                 //设置精度
-                share.setLongitude(113.372338f);*//*
+                share.setLongitude(113.372338f);
                 //设置是否是直接分享
                 share.setSilent(false);
                 share.show(context);
             }
-        });*/
+        });
 
 
     }

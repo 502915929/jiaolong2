@@ -64,6 +64,11 @@ public interface ConstantJiao {
      * 用户首次打开app上传设备信息接口
      */
     String fristOpenAppUrl=host_url+host+"dynamic/saveDeviceMsg.htm";
+
+    /**
+     * 用户第三方登录接口
+     */
+    String otherLoginUrl=host_url+host+"dynamic/saveOtherLoginUser.htm";
     //****************************************************************************************************************//
 
 
@@ -74,5 +79,10 @@ public interface ConstantJiao {
     String ak ="B9346deadaa551216717a024ecf59d6f";
     int geoTableId=71401;
     //===========================================================================
+
+
+    //---------------------常用
+    String interError="网络错误";
+    //
 
 }

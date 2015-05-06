@@ -84,16 +84,25 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="ShareSDK-QQ-2.5.9" level="project" />
     <orderEntry type="library" exported="" name="gson-2.0" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-QZone-2.5.9" level="project" />
     <orderEntry type="library" exported="" name="baidumapapi_v3_3_0" level="project" />
     <orderEntry type="library" exported="" name="mframework" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-Wechat-Moments-2.5.9" level="project" />
     <orderEntry type="library" exported="" name="locSDK_5.0" level="project" />
     <orderEntry type="library" exported="" name="nineoldandroids-2.4.0" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-Wechat-2.5.9" level="project" />
     <orderEntry type="library" exported="" name="android-support-v4" level="project" />
     <orderEntry type="library" exported="" name="androidannotations-api-3.2" level="project" />
-    <orderEntry type="library" exported="" name="android-async-http-1.4.6" level="project" />
     <orderEntry type="library" exported="" name="activeandroid-3.1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.8.6" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-TencentWeibo-2.5.9" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-Core-2.5.9" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-SinaWeibo-2.5.9" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-Wechat-Core-2.5.9" level="project" />
+    <orderEntry type="library" exported="" name="android-async-http-1.4.6" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-Wechat-Favorite-2.5.9" level="project" />
     <orderEntry type="module" module-name="appcompat_v7" exported="" />
     <orderEntry type="module" module-name="library" exported="" />
     <orderEntry type="module" module-name="PullToReflesh_Library" exported="" />

@@ -1,22 +1,41 @@
 package com.micro.shop.entity;
 
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+
 /**
  * Created by 95 on 2015/4/24.
  */
-public class ClientUserBase {
+@Table(name = "client_user_base")
+public class ClientUserBase extends Model {
 
-    private String userCode;
-    private String nickName;
-    private String userHeadImg;
-    private String mobile;
-    private String qq;
-    private String weibo;
-    private String weixin;
-    private String email;
-    private String realName;
-    private Integer age;
-    private Integer delFlag;
-    private String createDate;
+    @Column(name = "userCode",unique = true,notNull = true)
+    public String userCode;
+    @Column(name = "nickName")
+    public String nickName;
+    @Column(name = "userHeadImg")
+    public String userHeadImg;
+    @Column(name = "mobile")
+    public String mobile;
+    @Column(name = "qq")
+    public String qq;
+    @Column(name = "weibo")
+    public String weibo;
+    @Column(name = "weixin")
+    public String weixin;
+    @Column(name = "email")
+    public String email;
+    @Column(name = "realName")
+    public String realName;
+    @Column(name = "age")
+    public Integer age;
+    @Column(name = "delFlag")
+    public Integer delFlag;
+    @Column(name = "createDate")
+    public String createDate;
+    @Column(name = "userIsUpdate")
+    public Integer userIsUpdate;
 
     public String getUserCode() {
         return userCode;

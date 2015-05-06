@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <com.micro.shop.view.InnerListView
+        android:id="@+id/tab_one_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.micro.shop.view.InnerListView>
+
+</RelativeLayout><!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/product_more_tab.xml -->

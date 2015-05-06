@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/user_head_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/weixin"
+        android:scaleType="centerInside"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        />
+
+</LinearLayout>
+<!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/layout/layout_pro_good_well.xml -->

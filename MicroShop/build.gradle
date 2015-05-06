@@ -29,17 +29,35 @@ dependencies {
     compile project(':library')
     compile project(':library')
     compile project(':PullToReflesh_Library')
+
+    /*baidu map*/
     compile files('libs/baidumapapi_v3_3_0.jar')
     compile files('libs/locSDK_5.0.jar')
+
+    /*google gson*/
     compile files('libs/gson-2.0.jar')
-    compile files('libs/mframework.jar')
+
+    /*async http*/
     compile 'com.loopj.android:android-async-http:1.4.6'
 
+    /*zhujie*/
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
-    //compile 'com.sothree.slidinguppanel:library:3.0.0'
+
+    /*db*/
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
 
+    /*share sdk*/
+    compile files('libs/mframework.jar')
+    compile files('libs/ShareSDK-Core-2.5.9.jar')
+    compile files('libs/ShareSDK-QQ-2.5.9.jar')
+    compile files('libs/ShareSDK-QZone-2.5.9.jar')
+    compile files('libs/ShareSDK-SinaWeibo-2.5.9.jar')
+    compile files('libs/ShareSDK-TencentWeibo-2.5.9.jar')
+    compile files('libs/ShareSDK-Wechat-2.5.9.jar')
+    compile files('libs/ShareSDK-Wechat-Core-2.5.9.jar')
+    compile files('libs/ShareSDK-Wechat-Favorite-2.5.9.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-2.5.9.jar')
 }
 
 apt {

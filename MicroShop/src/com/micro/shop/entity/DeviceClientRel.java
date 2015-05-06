@@ -13,19 +13,25 @@ public class DeviceClientRel extends Model implements java.io.Serializable {
 
 	// Fields
 
-	/*@Column(name = "id")
-	public String id;*/
 	@Column(name = "base_id",length = 50)
 	public String baseId;
 	@Column(name = "user_code",length = 32)
 	public String userCode;
-
+	@Column(name="account",length = 50)
+	public String account;
+	@Column(name = "password",length = 20)
+	public String password;
+	@Column(name="status")
+	public Integer status;
 	public DeviceClientRel() {
 	}
 
-	public DeviceClientRel(String baseId,String userCode){
+	public DeviceClientRel(String baseId,String userCode,String account,String password,Integer status){
 		this.baseId=baseId;
 		this.userCode=userCode;
+		this.account=account;
+		this.password=password;
+		this.status=status;
 	}
 
 

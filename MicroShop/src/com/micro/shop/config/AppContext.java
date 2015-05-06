@@ -78,6 +78,10 @@ public class AppContext extends Application {
 	}
 
 	public static String getUserCode(){
+		if(userCode==null){
+			DeviceClientRel rel=new Select().from(DeviceClientRel.class).executeSingle();
+			userCode=rel.userCode;
+		}
 		return  userCode;
 	}
 
@@ -102,9 +106,9 @@ public class AppContext extends Application {
 						Device device=new Device(baseId,new Timestamp(System.currentTimeMillis()));
 						device.save();
 						userCode=msg.getRel().userCode;
-						DeviceClientRel rel = new DeviceClientRel(baseId,msg.getRel().userCode);
+						int status=msg.getRel().status;
+						DeviceClientRel rel = new DeviceClientRel(baseId,msg.getRel().userCode,null,null,status);
 						rel.save();
-
 					}else{
 						Toast.makeText(context,"服务器500错误",Toast.LENGTH_SHORT);
 					}
@@ -121,7 +125,7 @@ public class AppContext extends Application {
 				}
 			});
 		}else{
-			Log.e("","ttt");
+			Log.e("start","you device not frist");
 			baseId=list.get(0).baseId;
 		}
 		Log.e("app start","the baseId is----->"+baseId);

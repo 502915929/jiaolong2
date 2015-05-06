@@ -273,6 +273,20 @@
     <string name="address_distance">距离313米</string>
     <string name="address_name">星巴克咖啡（北京北清永旺商城店）</string>
     <string name="app_name">MicroShop</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="baidutieba">百度贴吧</string>
+    <string name="baidutieba_client_inavailable">目前您的百度贴吧版本过低或未安装，需要安装百度贴吧才能使用</string>
+    <string name="bluetooth">蓝牙</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/oks_strings.xml -->
+    <eat-comment/>
+    <string name="cancel">取消</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="douban">豆瓣</string>
+    <string name="dropbox">Dropbox</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/strings.xml -->
+    <eat-comment/>
     <string name="dynamic_address">重庆</string>
     <string name="dynamic_collect">0</string>
     <string name="dynamic_collect_btn">+  收藏</string>
@@ -284,7 +298,120 @@
     <string name="dynamic_old_price">￥420.00</string>
     <string name="dynamic_share">分享</string>
     <string name="dynamic_title">优商圈动态</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="email">邮件</string>
+    <string name="evernote">印象笔记</string>
+    <string name="facebook">Facebook</string>
+    <string name="facebookmessenger">Facebook Messenger</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/oks_strings.xml -->
+    <eat-comment/>
+    <string name="finish">完成</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="flickr">Flickr</string>
+    <string name="foursquare">FourSquare</string>
+    <string name="google_plus_client_inavailable">Google+ 版本过低或者没有安装，需要升级或安装Google+才能使用！</string>
+    <string name="googleplus">Google+</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/strings.xml -->
+    <eat-comment/>
     <string name="hello_world">Hello world!</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="instagram">Instagram</string>
+    <string name="instagram_client_inavailable">Instagram版本过低或者没有安装，需要升级或安装Instagram才能使用！</string>
+    <string name="instapager_email_or_password_incorrect">Email或密码不正确</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/instapaper_strings.xml -->
+    <eat-comment/>
+    <string formatted="false" name="instapager_login_html"><![CDATA[
+<!DOCTYPE html>
+<html>
+<head>
+<meta content=\"text/html; charset=utf-8\" http-equiv=\"Content-Type\">
+<meta content=\"width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no\" id=\"viewport\" name=\"viewport\">
+<meta content=\"yes\" name=\"apple-mobile-web-app-capable\">
+<title>%s</title>
+<style type=\"text/css\">
+body{margin:0;padding:0}
+.inputstyle {
+    -webkit-tap-highlight-color:rgba(255,255,255,0);
+    width:100%%;
+    height:44px;
+    color:#000;
+    background:0;
+    border:0;
+    font-size:16px;
+    outline: none;
+    -webkit-appearance:none
+}
+
+.btn {
+    width:90%%;
+    height:44px;
+    line-height:44px;
+    background:#A0C035;
+    border:0;
+    border-radius:4px;
+    color:#fff;
+    font-size:16px;
+    text-align:center;
+    margin-top:15px;
+    display:block
+}
+.btn:disabled {
+    background: #dddddd;
+}
+.error {
+    color:red;
+}
+</style>
+</head>
+
+<body>
+<script type=\"text/javascript\">
+function login(form){
+    var u=form[\"u\"].value,p=form[\"p\"].value;
+    if(!u || !p)
+        return false;
+    form[\"s\"].disabled = true;
+    return true;
+}
+</script>
+<form style=\"margin-top:45px;\" action=\"%s\" metho=\"get\" onsubmit=\"return login(this);\">
+%s
+<div style=\"padding-left:15px;border-top:1px solid #E3E3E5;border-bottom:1px solid #E3E3E5;\">
+ <input type=\"hidden\" name=\"ID_SIGN\" value=\"OWELJSFPWECSFEW\"/>
+ <input class=\"inputstyle\" id=\"u\" name=\"u\" type=\"text\" value=\"%s\" placeholder=\"%s\" style=\"border-bottom:1px solid #E3E3E5;\"/>
+ <input class=\"inputstyle\" id=\"p\" name=\"p\" type=\"password\" placeholder=\"%s\"/>
+</div>
+<p><input style=\"margin:0 auto;\" type=\"submit\" name=\"s\" value=\"  %s  \" class=\"btn\"/></p>
+</form>
+</body>
+</html>
+]]></string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="instapaper">Instapaper</string>
+    <string name="instapaper_email">邮箱</string>
+    <string name="instapaper_login">登录</string>
+    <string name="instapaper_logining">登录中…</string>
+    <string name="instapaper_pwd">密码</string>
+    <string name="kaixin">开心网</string>
+    <string name="kakaostory">KakaoStory</string>
+    <string name="kakaostory_client_inavailable">目前您的KakaoStory版本过低或未安装，需要安装KakaoStory才能使用</string>
+    <string name="kakaotalk">KakaoTalk</string>
+    <string name="kakaotalk_client_inavailable">目前您的KakaoTalk版本过低或未安装，需要安装KakaoTalk才能使用</string>
+    <string name="laiwang">来往</string>
+    <string name="laiwang_client_inavailable">目前您的来往版本过低或未安装，需要安装来往才能使用</string>
+    <string name="laiwangmoments">来往动态</string>
+    <string name="line">Line</string>
+    <string name="line_client_inavailable">目前您的Line版本过低或未安装，需要安装Line才能使用</string>
+    <string name="linkedin">领英</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/oks_strings.xml -->
+    <eat-comment/>
+    <string name="list_friends">%s的朋友</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/strings.xml -->
+    <eat-comment/>
     <string name="local_address">580m</string>
     <string name="local_intro">今年的流行色是玛莎拉酒红，高腰大摆半身裙</string>
     <string name="local_name">Yvan玄</string>
@@ -296,6 +423,21 @@
     <string name="logo_other">其他方式登录</string>
     <string name="logo_reg">注册账号</string>
     <string name="logo_reg_line">|</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="mingdao">明道</string>
+    <string name="mingdao_share_content">网页分享</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/oks_strings.xml -->
+    <eat-comment/>
+    <string name="multi_share">图文分享</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="neteasemicroblog">网易微博</string>
+    <string name="pinterest">Pinterest</string>
+    <string name="pinterest_client_inavailable">Pinterest版本过低或者没有安装，需要升级或安装Pinterest才能使用！</string>
+    <string name="pocket">Pocket</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/strings.xml -->
+    <eat-comment/>
     <string name="pop_shop_main_phone">电话：023-40360265</string>
     <string name="pop_shop_main_weixin">微信：568952362</string>
     <string name="price">￥</string>
@@ -331,6 +473,9 @@
     <string name="product_tab_one_title">商品参数</string>
     <string name="product_tab_three_title">评论列表</string>
     <string name="product_tab_two_title">图片预览</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/oks_strings.xml -->
+    <eat-comment/>
+    <string name="pull_to_refresh">下拉刷新</string>
     <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/build/intermediates/exploded-aar/微店源码/PullToReflesh_Library/unspecified/res/values/values.xml -->
     <eat-comment/>
     <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
@@ -339,10 +484,26 @@
     <string name="pull_to_refresh_pull_label">Pull to refresh…</string>
     <string name="pull_to_refresh_refreshing_label">Loading…</string>
     <string name="pull_to_refresh_release_label">Release to refresh…</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="qq">QQ</string>
+    <string name="qq_client_inavailable">QQ 版本过低或者没有安装，需要升级或安装QQ才能使用！</string>
+    <string name="qzone">QQ空间</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/oks_strings.xml -->
+    <eat-comment/>
+    <string name="refreshing">刷新中…</string>
     <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/strings.xml -->
     <eat-comment/>
     <string name="reg_btn">注册</string>
     <string name="reg_verification">验证码</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/oks_strings.xml -->
+    <eat-comment/>
+    <string name="release_to_refresh">松开刷新</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="renren">人人网</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/strings.xml -->
+    <eat-comment/>
     <string name="search_input_value">店铺名或商品</string>
     <string name="search_item_address">咖啡店        回龙观</string>
     <string name="search_item_dian">进店逛逛</string>
@@ -354,6 +515,28 @@
     <string name="search_item_rline">路线</string>
     <string name="search_item_tel">电话</string>
     <string name="search_list">列表</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/oks_strings.xml -->
+    <eat-comment/>
+    <string name="select_a_friend">请选择一个朋友</string>
+    <string name="select_one_plat_at_least">请选择一个目标平台</string>
+    <string name="shake2share">摇晃手机！</string>
+    <string name="share">分享</string>
+    <string name="share_canceled">分享已取消</string>
+    <string name="share_completed">分享成功</string>
+    <string name="share_failed">分享失败</string>
+    <string name="share_to">分享到</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="share_to_baidutieba">分享到百度贴吧</string>
+    <string name="share_to_mingdao">分享到明道</string>
+    <string name="share_to_qq">分享到QQ</string>
+    <string name="share_to_qzone">分享到QQ空间</string>
+    <string name="share_to_qzone_default">来自%s的分享</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/oks_strings.xml -->
+    <eat-comment/>
+    <string name="sharing">分享操作正在后台进行…</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/strings.xml -->
+    <eat-comment/>
     <string name="shop_main_ban">排行榜</string>
     <string name="shop_main_ban_collect">收藏排行</string>
     <string name="shop_main_ban_sell">访问排行</string>
@@ -362,14 +545,50 @@
     <string name="shop_main_intro">店铺简介未填写</string>
     <string name="shop_main_like">猜你喜欢</string>
     <string name="shop_main_tel">联系方式</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="shortmessage">信息</string>
+    <string name="sinaweibo">新浪微博</string>
+    <string name="sohumicroblog">搜狐微博</string>
+    <string name="sohusuishenkan">搜狐随身看</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/strings.xml -->
+    <eat-comment/>
     <string name="tab_four">我的</string>
     <string name="tab_one">动态</string>
     <string name="tab_three">搜索</string>
     <string name="tab_two">本地</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="tencentweibo">腾讯微博</string>
+    <string name="tumblr">Tumblr</string>
+    <string name="twitter">Twitter</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/strings.xml -->
+    <eat-comment/>
     <string name="under_construcate">正在建设中....</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="use_login_button">请改用“登录”按钮</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/strings.xml -->
+    <eat-comment/>
     <string name="verification_btn">52s后重新获取</string>
     <string name="verification_hint">短信验证码已经发送至你的手机15022321023</string>
     <string name="verification_ok">确定</string>
+    <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/ssdk_strings.xml -->
+    <eat-comment/>
+    <string name="vkontakte">VK</string>
+    <string name="website">http://www.mob.com</string>
+    <string name="wechat">微信好友</string>
+    <string name="wechat_client_inavailable">目前您的微信版本过低或未安装微信，需要安装微信才能使用</string>
+    <string name="wechatfavorite">微信收藏</string>
+    <string name="wechatmoments">微信朋友圈</string>
+    <string name="weibo_oauth_regiseter">应用授权</string>
+    <string name="weibo_upload_content">分享图片</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="whatsapp_client_inavailable">目前您的WhatsApp版本过低或未安装，需要安装WhatsApp才能使用</string>
+    <string name="yixin">易信</string>
+    <string name="yixin_client_inavailable">目前您的易信版本过低或未安装，需要安装易信才能使用</string>
+    <string name="yixinmoments">易信朋友圈</string>
+    <string name="youdao">有道云笔记</string>
     <!-- From: file:/G:/优商圈app/客户端模版app/微店源码/MicroShop/res/values/styles.xml -->
     <eat-comment/>
     <style name="StyleRatingBarYellow" parent="@android:style/Widget.RatingBar">
